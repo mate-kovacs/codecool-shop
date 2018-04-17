@@ -8,8 +8,9 @@
     <title>Codecool Shop</title>
 
     <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"-->
+            <!--integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -23,6 +24,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+
+    <script src="/static/js/add_item_to_cart.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
@@ -51,12 +54,12 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <form action="/" method="post">
-                                <input hidden name='prodName' th:value="${prod.name}">
-                                <input hidden name='price' th:value="${prod.getPrice}">
-                                <button>Add to cart</button>
-                            </form>
-                            <!--<a class="btn btn-success" href="#">Add to cart</a>-->
+                                <button class="btn btn-success addButton"
+                                        th:data-id="${prod.id}"
+                                        th:data-name="${prod.name}"
+                                        th:data-price="${prod.getPrice()}">
+                                    Add to cart
+                                </button>
                         </div>
                     </div>
                 </div>

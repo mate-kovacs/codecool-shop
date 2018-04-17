@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.model.User;
 import com.codecool.shop.utils.Session;
 
 
@@ -18,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,10 +27,12 @@ import java.util.Map;
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+
 
 //        Map params = new HashMap<>();
 //        params.put("category", productCategoryDataStore.find(1));
@@ -47,10 +51,16 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String productName = request.getParameter("prodName");
+        HttpSession session;
+        session = request.getSession();
+        if (session.isNew()) {
+            session.setAttribute("UserObject", new User());
+        }
+        User user = (User)session.getAttribute("UserObj");
+
+        String productId = request.getParameter("id");
+        String productName = request.getParameter("name");
         String productPrice = request.getParameter("price");
-        System.out.println(productName);
-        System.out.println(productPrice);
 
         response.sendRedirect("/");
     }
