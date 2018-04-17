@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+            defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"
+            defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"
+            defer></script>
+    <!--Font Awesome-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
+    <!--Custom js-->
+    <script src="/static/js/payment.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="payment-methods">
+        <button id="pay-button-creditcard" type="button" class="btn btn-info">Credit Card <i
+                class="fas fa-credit-card"></i></button>
+        <button id="pay-button-paypal" type="button" class="btn btn-info">PayPal <i class="fab fa-cc-paypal"></i>
+        </button>
+    </div>
+
+    <!--Form for paypay-->
+    <form class="paypal-form" hidden>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                   placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+    <!--Form for credit card-->
+    <form class="cc-form" hidden>
+        <div class="form-group has-success">
+            <label for="cc-name" class="control-label mb-1">Name on card</label>
+            <input id="cc-name" name="cc-name" type="text" class="form-control cc-name" required autocomplete="cc-name"
+                   aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+        </div>
+        <div class="form-group">
+            <label for="cc-number" class="control-label mb-1">Card number</label>
+            <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number"
+                   required="1111-2222-3333-4444" pattern="[0-9]{16}">
+            <span class="invalid-feedback">Enter a valid 16 digit card number</span>
+        </div>
+        <div class="form-group">
+            <label for="cc-exp" class="control-label mb-1">Expiration</label>
+            <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" required placeholder="MM / YY"
+                   autocomplete="cc-exp">
+            <span class="invalid-feedback">Enter the expiration date</span>
+        </div>
+        <div class="form-group">
+            <label for="cc-security-code">Security Code</label>
+            <input type="password" class="form-control" id="cc-security-code" placeholder="CCV">
+        </div>
+        <button type="submit" class="btn btn-primary">Pay</button>
+    </form>
+</div>
+</body>
+</html>
