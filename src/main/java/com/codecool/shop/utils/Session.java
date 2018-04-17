@@ -1,7 +1,9 @@
 package com.codecool.shop.utils;
 
+import com.codecool.shop.model.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 public class Session {
     private HttpSession session;
@@ -11,6 +13,6 @@ public class Session {
         if (session.isNew()) {
             session.setAttribute("UserObject", new User());
         }
-        return sessionUser = (User)session.getAttribute("UserObj");
+        return (User)session.getAttribute("UserObj");
     }
 }
