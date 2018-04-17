@@ -23,6 +23,12 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        User user = req.getSession().getAttribute("UserObject");
+        for (Order order: user.orders) {
+            if(order.getStatus() == Status.IN_PROGRESS) {
+                order.pay();
+            }
+        }
+        doGet(req, resp);
     }
 }

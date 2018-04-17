@@ -32,7 +32,7 @@
     </div>
 
     <!--Form for paypay-->
-    <form class="paypal-form" hidden>
+    <form class="paypal-form" action="/payment" method="post" hidden>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -43,10 +43,10 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
-        <div class="btn btn-primary pay-btn">Log in</div>
+        <button type="submit" class="btn btn-primary pay-btn">Log in</button>
     </form>
     <!--Form for credit card-->
-    <form class="cc-form" hidden>
+    <form class="cc-form" action="/payment" method="post" hidden>
         <div class="form-group has-success">
             <label for="cc-name" class="control-label mb-1">Name on card</label>
             <input id="cc-name" name="cc-name" type="text" class="form-control cc-name" required autocomplete="cc-name"
