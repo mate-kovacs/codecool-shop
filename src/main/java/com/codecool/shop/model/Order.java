@@ -13,8 +13,10 @@ public class Order {
     private String shippingAddress;
     private int phone;
     private Status status;
+    ShoppingCart orderShoppingCart;
 
-    public Order(String name, String email, String billindAddress, String shippingAddress, int phone) {
+    public Order(String name, String email, String billingAddress, String shippingAddress, int phone, ShoppingCart shoppingCart) {
+        this.orderShoppingCart = shoppingCart;
         this.name = name;
         this.email = email;
         this.billingAddress = billingAddress;
@@ -44,7 +46,7 @@ public class Order {
     }
 
     public String getBillingAddress() {
-        return billindAddress;
+        return billingAddress;
     }
 
     public void setBillingAddress(String billingAddress) {
