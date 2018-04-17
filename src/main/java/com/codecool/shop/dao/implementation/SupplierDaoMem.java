@@ -43,4 +43,19 @@ public class SupplierDaoMem implements SupplierDao {
     public List<Supplier> getAll() {
         return data;
     }
+
+    @Override
+    public Integer findIdByName(String name){
+// Default case
+        if (name == null){
+            return 1;
+        }
+// General case
+        for ( Supplier supp : data){
+            if (name.equals(supp.getName())){
+                return supp.getId();
+            }
+        }
+        return null;
+    }
 }
