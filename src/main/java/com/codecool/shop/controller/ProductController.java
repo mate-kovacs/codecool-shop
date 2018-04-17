@@ -1,5 +1,8 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.utils.Session;
+
+
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
@@ -44,6 +47,12 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String productName = request.getParameter("prodName");
+        String productPrice = request.getParameter("price");
+        System.out.println(productName);
+        System.out.println(productPrice);
+
+        response.sendRedirect("/");
     }
 
     private void filterProducts() {
