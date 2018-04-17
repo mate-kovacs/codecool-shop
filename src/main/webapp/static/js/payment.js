@@ -1,6 +1,7 @@
 payment = {
     init: function () {
         payment.addEventListenerPaymentButtons();
+        payment.addEventListenerPayButtons();
     },
     
     addEventListenerPaymentButtons: function () {
@@ -13,8 +14,16 @@ payment = {
         creditCard.addEventListener('click', function () {
             document.getElementsByClassName("payment-methods")[0].remove();
             document.getElementsByClassName("cc-form")[0].removeAttribute("hidden");
-        })
+        });
+    },
 
+    addEventListenerPayButtons: function () {
+        let payingButtons = document.getElementsByClassName("pay-btn");
+        for(let payButton of payingButtons) {
+            payButton.addEventListener('click', function() {
+                document.getElementById("pay-success").removeAttribute("hidden");
+            });
+        }
     }
 };
 
