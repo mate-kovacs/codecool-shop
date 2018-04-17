@@ -9,7 +9,7 @@ public class Order {
 
     private String name;
     private String email;
-    private String billindAddress;
+    private String billingAddress;
     private String shippingAddress;
     private int phone;
     private Status status;
@@ -17,7 +17,7 @@ public class Order {
     public Order(String name, String email, String billindAddress, String shippingAddress, int phone) {
         this.name = name;
         this.email = email;
-        this.billindAddress = billindAddress;
+        this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.phone = phone;
         status = Status.IN_PROGRESS;
@@ -43,12 +43,12 @@ public class Order {
         this.email = email;
     }
 
-    public String getBillindAddress() {
+    public String getBillingAddress() {
         return billindAddress;
     }
 
-    public void setBillindAddress(String billindAddress) {
-        this.billindAddress = billindAddress;
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public String getShippingAddress() {
