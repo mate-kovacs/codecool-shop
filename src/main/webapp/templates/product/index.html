@@ -44,12 +44,14 @@
                 Category
             </label>
             <select name="select_category" id="select-category">
+                <option value="All" selected>All</option>
                 <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}"></option>
             </select>
             <label for="select-supplier">
                 Supplier
             </label>
             <select name="select_supplier" id="select-supplier">
+                <option value="All" selected>All</option>
                 <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"></option>
             </select>
             <button type="submit" formmethod="get">
