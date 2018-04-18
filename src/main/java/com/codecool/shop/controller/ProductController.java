@@ -2,7 +2,6 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.model.User;
 import com.codecool.shop.model.ShoppingCart;
-import com.codecool.shop.utils.Session;
 
 
 import com.codecool.shop.dao.ProductCategoryDao;
