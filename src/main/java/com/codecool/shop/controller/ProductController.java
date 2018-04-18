@@ -1,4 +1,5 @@
 package com.codecool.shop.controller;
+
 import org.json.JSONObject;
 
 import com.codecool.shop.model.User;
@@ -74,24 +75,34 @@ public class ProductController extends HttpServlet {
                 productCategoryDataStore.filterProducts(
                         productDataStore.getAll(), category), supplier);
 
-//        Map params = new HashMap<>();
-//        params.put("category", productCategoryDataStore.find(1));
-//        params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
-
-        context.setVariable("recipient", "World");
-        context.setVariable("category_list", productCategoryDataStore.getAll());
-        context.setVariable("supplier_list", supplierDataStore.getAll());
-        context.setVariable("category", category);
-        context.setVariable("supplier", supplier);
-        context.setVariable("products", products);
 
         if (req.getParameter("ajax") != null) {
-            String text = "teszt text";
+            JSONObject json = new JSONObject();
+            int numberOfProducts = 0;
+            for (Product product : products) {
 
-            resp.setContentType("text/plain");
-            resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().write(text);
+                JSONObject temp = new JSONObject();
+                temp.put("title", product.getName());
+                temp.put("desciption", product.getDescription());
+                temp.put("id", product.getId());
+                temp.put("price", product.getPrice());
+
+                json.put("product" + numberOfProducts, temp);
+                numberOfProducts ++;
+            }
+            json.put("elements", numberOfProducts);
+
+            resp.setContentType("application/json");
+            resp.getWriter().print(json);
+
         } else {
+            context.setVariable("recipient", "World");
+            context.setVariable("category_list", productCategoryDataStore.getAll());
+            context.setVariable("supplier_list", supplierDataStore.getAll());
+            context.setVariable("category", category);
+            context.setVariable("supplier", supplier);
+            context.setVariable("products", products);
+
             engine.process("product/index.html", context, resp.getWriter());
         }
 
@@ -106,7 +117,7 @@ public class ProductController extends HttpServlet {
         if (session.isNew()) {
             session.setAttribute("UserObject", new User());
         }
-        User user = (User)session.getAttribute("UserObject");
+        User user = (User) session.getAttribute("UserObject");
         String productId = request.getParameter("id");
         ShoppingCart shoppingCart = user.shoppingCart;
         shoppingCart.addItem(Integer.parseInt(productId));
