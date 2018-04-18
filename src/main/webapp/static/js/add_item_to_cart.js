@@ -1,5 +1,8 @@
-$(function()
-{
+$(function() {
+    addEventListenerToButtons();
+});
+
+function addEventListenerToButtons() {
     let buttons = document.getElementsByClassName('addButton');
 
     $.each(buttons, function (j, button) {
@@ -14,10 +17,8 @@ $(function()
                     let numberOfItems = response.numberOfItems;
                     $('#numberOfItems').html(numberOfItems + " items");
                     $('#totalPrice').html(priceSum + " USD")
-
                 }
             });
         });
-    })
-
-});
+    });
+}

@@ -77,20 +77,21 @@ public class ProductController extends HttpServlet {
 
 
         if (req.getParameter("ajax") != null) {
+            System.out.println(req.getParameter("ajax"));
             JSONObject json = new JSONObject();
             int numberOfProducts = 0;
             for (Product product : products) {
 
-                JSONObject temp = new JSONObject();
-                temp.put("title", product.getName());
-                temp.put("desciption", product.getDescription());
-                temp.put("id", product.getId());
-                temp.put("price", product.getPrice());
+                json.put("Product" + numberOfProducts, new JSONObject()
+                    .put("title", product.getName())
+                    .put("description", product.getDescription())
+                    .put("id", product.getId())
+                    .put("price", product.getPrice()));
 
-                json.put("product" + numberOfProducts, temp);
+//                json.put("product" + numberOfProducts, temp);
                 numberOfProducts ++;
             }
-            json.put("elements", numberOfProducts);
+//            json.put("elements", numberOfProducts);
 
             resp.setContentType("application/json");
             resp.getWriter().print(json);
