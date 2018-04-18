@@ -26,6 +26,8 @@ public class ShoppingCartController extends HttpServlet{
 
         ShoppingCart shoppingCart = user.shoppingCart;
 
+
+
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
@@ -35,7 +37,24 @@ public class ShoppingCartController extends HttpServlet{
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.isNew()) {
+            session.setAttribute("UserObject", new User());
+        }
+        User user = (User)session.getAttribute("UserObject");
+
+        ShoppingCart shoppingCart = user.shoppingCart;
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        if (request.getParameter("process").equals("increase")) {
+            shoppingCart.addItem(id);
+        } else {
+            shoppingCart.removeItem(id);;
+        }
+
+        response.getWriter().print(shoppingCart.getNumberOfItemById(id));
 
     }
 
