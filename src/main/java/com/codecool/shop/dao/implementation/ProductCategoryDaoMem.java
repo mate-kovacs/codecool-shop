@@ -2,6 +2,7 @@ package com.codecool.shop.dao.implementation;
 
 
 import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
 import java.util.ArrayList;
@@ -48,14 +49,14 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
     }
 
     @Override
-    public Integer findIdByName(String name){
+    public Integer findIdByName(String name) {
 // Default case
-        if (name == null){
+        if (name == null) {
             return 1;
         }
 // General case
-        for (ProductCategory category : data){
-            if (name.equals(category.getName())){
+        for (ProductCategory category : data) {
+            if (name.equals(category.getName())) {
                 return category.getId();
             }
         }
@@ -63,7 +64,21 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
     }
 
     @Override
-    public ProductCategory getDefaultCategory(){
+    public ProductCategory getDefaultCategory() {
         return defaultCategory;
+    }
+
+    @Override
+    public List<Product> filterProducts(List<Product> products, ProductCategory category) {
+        if (category.equals(defaultCategory)) {
+            return products;
+        }
+        List<Product> temp = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getProductCategory().equals(category)) {
+                temp.add(product);
+            }
+        }
+        return temp;
     }
 }
