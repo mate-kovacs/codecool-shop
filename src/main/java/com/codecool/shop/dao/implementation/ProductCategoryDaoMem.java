@@ -11,10 +11,12 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
 
     private List<ProductCategory> data = new ArrayList<>();
     private static ProductCategoryDaoMem instance = null;
+    private ProductCategory defaultCategory;
 
     /* A private Constructor prevents any other class from instantiating.
      */
     private ProductCategoryDaoMem() {
+        defaultCategory = new ProductCategory("All", "", "");
     }
 
     public static ProductCategoryDaoMem getInstance() {
@@ -58,5 +60,10 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
             }
         }
         return null;
+    }
+
+    @Override
+    public ProductCategory getDefaultCategory(){
+        return defaultCategory;
     }
 }
