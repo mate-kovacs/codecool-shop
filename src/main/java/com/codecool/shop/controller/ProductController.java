@@ -51,7 +51,8 @@ public class ProductController extends HttpServlet {
         Supplier supplier;
 
         String selectedCategory = req.getParameter("select_category");
-        if (selectedCategory != null && !selectedCategory.equals("All")) {
+        if (selectedCategory != null &&
+                !selectedCategory.equals(productCategoryDataStore.getDefaultCategory().getName())) {
             category = productCategoryDataStore.find(
                     productCategoryDataStore.findIdByName(
                             req.getParameter("select_category")));
@@ -60,7 +61,8 @@ public class ProductController extends HttpServlet {
         }
 
         String selectedSupplier = req.getParameter("select_supplier");
-        if (selectedSupplier != null && !selectedSupplier.equals("All")) {
+        if (selectedSupplier != null &&
+                !selectedSupplier.equals(supplierDataStore.getDefaultSupplier().getName())) {
             supplier = supplierDataStore.find(
                     supplierDataStore.findIdByName(
                             req.getParameter("select_supplier")));
