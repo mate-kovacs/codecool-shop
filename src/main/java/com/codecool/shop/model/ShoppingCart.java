@@ -38,6 +38,11 @@ public class ShoppingCart {
         return sum;
     }
 
+    public int getNumberOfItemById(int id) {
+        Product productToCount = ProductDaoMem.getInstance().find(id);
+        return (shoppingCartContent.get(productToCount) == null)? 0 : shoppingCartContent.get(productToCount);
+    }
+
     public int getNumberOfItems() {
         return shoppingCartContent.values().stream().mapToInt(i -> i).sum();
     }

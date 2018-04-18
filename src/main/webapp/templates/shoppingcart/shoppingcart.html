@@ -24,11 +24,13 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
+    <script src="/static/js/shoppingcart.js" defer></script>
+
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 <body>
 <div class="container">
-<div class="item col-xs-4 col-lg-4" th:each="element : ${shoppingcart}">
+<div class="item col-xs-4 col-lg-4" th:each="element : ${shoppingcart}" th:id="'productItem_' + ${element.key.id}">
     <div class="thumbnail">
         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${element.key.id} + '.jpg'" alt="" />
         <div class="caption">
@@ -39,9 +41,9 @@
                     <p class="lead" th:text="${element.key.getPrice()}">100 USD</p>
                 </div>
                 <div class="col-xs-12 col-md-6">
-                    <button>-</button>
-                    <span th:text="${element.value}">1</span>
-                    <button>+</button>
+                    <button class="decrease_btn" data-process="decrease" th:data-id="${element.key.id}">-</button>
+                    <span class="quantity_field" th:text="${element.value}">1</span>
+                    <button class="increase_btn" data-process="increase" th:data-id="${element.key.id}">+</button>
                 </div>
             </div>
         </div>
