@@ -10,6 +10,7 @@ public interface SupplierDao {
     Supplier find(int id);
     void remove(int id);
     Integer findIdByName(String name);
+    Supplier getDefaultSupplier();
 
     List<Supplier> getAll();
 }
