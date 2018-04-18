@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 <body>
-
+<div class="container">
 <div class="item col-xs-4 col-lg-4" th:each="element : ${shoppingcart}">
     <div class="thumbnail">
         <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${element.key.id} + '.jpg'" alt="" />
@@ -47,6 +47,9 @@
         </div>
     </div>
 </div>
-
+    <div>
+        <a href="/checkout"><button>Checkout</button></a>
+    </div>
+</div>
 </body>
 </html>
