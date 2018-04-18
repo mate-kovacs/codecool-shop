@@ -85,7 +85,17 @@ public class ProductController extends HttpServlet {
         context.setVariable("supplier", supplier);
         context.setVariable("products", products);
 
-        engine.process("product/index.html", context, resp.getWriter());
+        if (req.getParameter("ajax") != null) {
+            String text = "teszt text";
+
+            resp.setContentType("text/plain");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write(text);
+        } else {
+            engine.process("product/index.html", context, resp.getWriter());
+        }
+
+
     }
 
     @Override
