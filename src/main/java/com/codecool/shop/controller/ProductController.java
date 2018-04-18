@@ -61,7 +61,7 @@ public class ProductController extends HttpServlet {
             supplier = supplierDataStore.getDefaultSupplier();
         }
 
-        List<Product> products = filterProducts(supplier, filterProducts(category, productDataStore.getAll(), productCategoryDataStore), supplierDataStore);
+        List<Product> products = supplierDataStore.filterProducts(filterProducts(category, productDataStore.getAll(), productCategoryDataStore), supplier);
 
 //        Map params = new HashMap<>();
 //        params.put("category", productCategoryDataStore.find(1));
@@ -89,19 +89,6 @@ public class ProductController extends HttpServlet {
         List<Product> temp = new ArrayList<>();
         for (Product product : products) {
             if (product.getProductCategory().equals(category)) {
-                temp.add(product);
-            }
-        }
-        return temp;
-    }
-
-    private List<Product> filterProducts(Supplier supplier, List<Product> products, SupplierDao defaultSupplier) {
-        if (supplier.equals(defaultSupplier.getDefaultSupplier())) {
-            return products;
-        }
-        List<Product> temp = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getSupplier().equals(supplier)) {
                 temp.add(product);
             }
         }
