@@ -1,6 +1,7 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.model.User;
+import com.codecool.shop.model.ShoppingCart;
 import com.codecool.shop.utils.Session;
 
 
@@ -56,12 +57,11 @@ public class ProductController extends HttpServlet {
         if (session.isNew()) {
             session.setAttribute("UserObject", new User());
         }
-        User user = (User)session.getAttribute("UserObj");
 
         String productId = request.getParameter("id");
-        String productName = request.getParameter("name");
-        String productPrice = request.getParameter("price");
-
+        User user = (User)session.getAttribute("UserObject");
+        ShoppingCart shoppingCart = user.shoppingCart;
+        shoppingCart.addItem(Integer.parseInt(productId));
         response.sendRedirect("/");
     }
 
