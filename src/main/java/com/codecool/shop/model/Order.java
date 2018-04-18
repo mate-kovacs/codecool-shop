@@ -9,13 +9,13 @@ public class Order {
 
     private String name;
     private String email;
-    private String billingAddress;
-    private String shippingAddress;
+    private Address billingAddress;
+    private Address shippingAddress;
     private int phone;
     private Status status;
     ShoppingCart orderShoppingCart;
 
-    public Order(String name, String email, String billingAddress, String shippingAddress, int phone, ShoppingCart shoppingCart) {
+    public Order(String name, String email, Address billingAddress, Address shippingAddress, int phone, ShoppingCart shoppingCart) {
         this.orderShoppingCart = shoppingCart;
         this.name = name;
         this.email = email;
@@ -45,19 +45,19 @@ public class Order {
         this.email = email;
     }
 
-    public String getBillingAddress() {
+    public Address getBillingAddress() {
         return billingAddress;
     }
 
-    public void setBillingAddress(String billingAddress) {
+    public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
 
-    public String getShippingAddress() {
+    public Address getShippingAddress() {
         return shippingAddress;
     }
 
-    public void setShippingAddress(String shippingAddress) {
+    public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 
