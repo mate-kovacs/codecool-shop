@@ -50,11 +50,6 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
 
     @Override
     public Integer findIdByName(String name) {
-// Default case
-        if (name == null) {
-            return 1;
-        }
-// General case
         for (ProductCategory category : data) {
             if (name.equals(category.getName())) {
                 return category.getId();
