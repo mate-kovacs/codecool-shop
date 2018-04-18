@@ -36,15 +36,32 @@ public class ProductController extends HttpServlet {
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
 
-        SupplierDao supplierDataStroe = SupplierDaoMem.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
+        ProductCategory category;
+        Supplier supplier;
 
-        ProductCategory category = productCategoryDataStore.find(productCategoryDataStore.findIdByName(req.getParameter("select_category")));
-        Supplier supplier = supplierDataStroe.find(supplierDataStroe.findIdByName(req.getParameter("select_supplier")));
+        String selectedCategory = req.getParameter("select_category");
+        if (selectedCategory != null && !selectedCategory.equals("All")) {
+            category = productCategoryDataStore.find(
+                    productCategoryDataStore.findIdByName(
+                            req.getParameter("select_category")));
+        } else {
+            category = productCategoryDataStore.getDefaultCategory();
+        }
 
-        List<Product> products = filterProducts(supplier, filterProducts(category, productDataStore.getAll() ));
+        String selectedSupplier = req.getParameter("select_supplier");
+        if (selectedSupplier != null && !selectedSupplier.equals("All")) {
+            supplier = supplierDataStore.find(
+                    supplierDataStore.findIdByName(
+                            req.getParameter("select_supplier")));
+        } else {
+            supplier = supplierDataStore.getDefaultSupplier();
+        }
+
+        List<Product> products = filterProducts(supplier, filterProducts(category, productDataStore.getAll(), productCategoryDataStore), supplierDataStore);
 
 //        Map params = new HashMap<>();
 //        params.put("category", productCategoryDataStore.find(1));
@@ -52,9 +69,9 @@ public class ProductController extends HttpServlet {
 
         context.setVariable("recipient", "World");
         context.setVariable("category_list", productCategoryDataStore.getAll());
-        context.setVariable("supplier_list", supplierDataStroe.getAll());
-        context.setVariable("category", productCategoryDataStore.find(1));
-        context.setVariable("supplier", supplierDataStroe.find(1));
+        context.setVariable("supplier_list", supplierDataStore.getAll());
+        context.setVariable("category", category);
+        context.setVariable("supplier", supplier);
         context.setVariable("products", products);
 
         engine.process("product/index.html", context, resp.getWriter());
@@ -65,20 +82,26 @@ public class ProductController extends HttpServlet {
 
     }
 
-    private List<Product> filterProducts(ProductCategory category, List<Product> products) {
+    private List<Product> filterProducts(ProductCategory category, List<Product> products, ProductCategoryDao defaultCategory) {
+        if (category.equals(defaultCategory.getDefaultCategory())) {
+            return products;
+        }
         List<Product> temp = new ArrayList<>();
-        for (Product product : products){
-            if (product.getProductCategory().equals(category)){
+        for (Product product : products) {
+            if (product.getProductCategory().equals(category)) {
                 temp.add(product);
             }
         }
         return temp;
     }
 
-    private List<Product> filterProducts(Supplier supplier, List<Product> products) {
+    private List<Product> filterProducts(Supplier supplier, List<Product> products, SupplierDao defaultSupplier) {
+        if (supplier.equals(defaultSupplier.getDefaultSupplier())) {
+            return products;
+        }
         List<Product> temp = new ArrayList<>();
-        for (Product product : products){
-            if (product.getSupplier().equals(supplier)){
+        for (Product product : products) {
+            if (product.getSupplier().equals(supplier)) {
                 temp.add(product);
             }
         }
