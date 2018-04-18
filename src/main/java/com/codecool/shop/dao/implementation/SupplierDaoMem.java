@@ -10,10 +10,12 @@ public class SupplierDaoMem implements SupplierDao {
 
     private List<Supplier> data = new ArrayList<>();
     private static SupplierDaoMem instance = null;
+    private Supplier defaultSupplier;
 
     /* A private Constructor prevents any other class from instantiating.
      */
     private SupplierDaoMem() {
+        defaultSupplier = new Supplier("All", "");
     }
 
     public static SupplierDaoMem getInstance() {
@@ -57,5 +59,10 @@ public class SupplierDaoMem implements SupplierDao {
             }
         }
         return null;
+    }
+
+    @Override
+    public Supplier getDefaultSupplier(){
+        return defaultSupplier;
     }
 }
