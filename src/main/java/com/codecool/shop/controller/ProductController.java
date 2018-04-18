@@ -1,8 +1,8 @@
 package com.codecool.shop.controller;
+import org.json.JSONObject;
 
 import com.codecool.shop.model.User;
 import com.codecool.shop.model.ShoppingCart;
-import com.codecool.shop.utils.Session;
 
 
 import com.codecool.shop.dao.ProductCategoryDao;
@@ -22,12 +22,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,12 +57,20 @@ public class ProductController extends HttpServlet {
         if (session.isNew()) {
             session.setAttribute("UserObject", new User());
         }
-
-        String productId = request.getParameter("id");
         User user = (User)session.getAttribute("UserObject");
+        String productId = request.getParameter("id");
         ShoppingCart shoppingCart = user.shoppingCart;
         shoppingCart.addItem(Integer.parseInt(productId));
-        response.sendRedirect("/");
+
+        float priceSum = shoppingCart.sumCart();
+        int numberOfItems = shoppingCart.getContent().size();
+
+        JSONObject json = new JSONObject();
+        json.put("priceSum", priceSum);
+        json.put("numberOfItems", numberOfItems);
+
+        response.setContentType("application/json");
+        response.getWriter().print(json);
     }
 
     private void filterProducts() {
