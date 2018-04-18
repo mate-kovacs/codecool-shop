@@ -2,7 +2,7 @@ package com.codecool.shop.model;
 
 public class Order {
 
-    private enum Status {
+    public static enum Status {
         IN_PROGRESS,
         PAID
     }
