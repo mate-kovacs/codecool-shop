@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User {
     public List<Order> orders = new ArrayList<>();
-    ShoppingCart shoppingCart;
+    public ShoppingCart shoppingCart;
 
     public User () {
         shoppingCart = new ShoppingCart();
