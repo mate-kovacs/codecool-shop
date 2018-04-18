@@ -9,6 +9,12 @@ $(function()
                 type: 'POST',
                 url: '/',
                 data: {"id": id},
+                success: function (response) {
+                    let priceSum = response.priceSum;
+                    let numberOfItems = response.numberOfItems;
+                    $('#numberOfItems').html(numberOfItems + " items");
+                    $('#totalPrice').html(priceSum + " USD");
+                }
             });
         });
     })
