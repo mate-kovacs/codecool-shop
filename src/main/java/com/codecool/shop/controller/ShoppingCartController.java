@@ -24,15 +24,6 @@ public class ShoppingCartController extends HttpServlet{
         }
         User user = (User)session.getAttribute("UserObject");
 
-        //TESTING SHIT:
-        user.shoppingCart.addItem(2);
-        user.shoppingCart.addItem(2);
-        user.shoppingCart.addItem(1);
-        user.shoppingCart.addItem(3);
-        user.shoppingCart.addItem(3);
-        user.shoppingCart.addItem(3);
-        //TESTING SHIT END
-
         ShoppingCart shoppingCart = user.shoppingCart;
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
