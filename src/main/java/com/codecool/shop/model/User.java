@@ -1,12 +1,13 @@
 package com.codecool.shop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    List<Order> orders;
+    public List<Order> orders = new ArrayList<>();
     ShoppingCart shoppingCart;
 
-    User () {
+    public User () {
         shoppingCart = new ShoppingCart();
     }
 }
