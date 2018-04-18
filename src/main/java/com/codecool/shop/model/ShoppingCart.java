@@ -37,6 +37,10 @@ public class ShoppingCart {
         }
         return sum;
     }
+
+    public int getNumberOfItems() {
+        return shoppingCartContent.values().stream().mapToInt(i -> i).sum();
+    }
 }
 
 
