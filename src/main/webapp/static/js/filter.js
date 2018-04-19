@@ -24,7 +24,9 @@ function addFilterListeners() {
                     htmlString += itemHtmlText(value.id, value.title, value.description, value.price);
                 });
                 let productList = document.getElementById("products");
+                let categoryTitle = document.getElementById("category-title");
                 productList.innerHTML = htmlString;
+                categoryTitle.innerHTML = category.options[category.selectedIndex].value;
                 addEventListenerToButtons();
             },
             error: function (xhr) {
@@ -38,7 +40,7 @@ function itemHtmlText(id, title, description, price){
 
         return "<div class=\"item col-xs-4 col-lg-4\">\n" +
             "            <div class=\"thumbnail\">\n" +
-            "                <img class=\"group list-group-image\" src=\"/static/img/product_"+ id +".jpg\" th:attr=src='/static/img/product_" + id + ".jpg'\" alt=\"\" />\n" +
+            "                <img class=\"group list-group-image\" src=\"/static/img/product_"+ id +".jpg\" alt=\"\" />\n" +
             "                <div class=\"caption\">\n" +
             "                    <h4 class=\"group inner list-group-item-heading\">"+title+"</h4>\n" +
             "                    <p class=\"group inner list-group-item-text\">"+description+"</p>\n" +
