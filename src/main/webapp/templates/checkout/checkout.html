@@ -18,8 +18,7 @@
     <script src="/static/js/checkout.js" defer></script>
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet"
-          defer>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
     <title>Checkout</title>
 </head>
 <body class="lots-main-page-body">
@@ -36,19 +35,19 @@
         <div class="form-row justify-content-end">
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputName">Name</label>
-                <input type="name" class="form-control lots-input-field" id="inputName" placeholder="Name"
-                       name="inputName">
+                <input type="text" class="form-control lots-input-field" id="inputName" placeholder="Name"
+                       name="inputName" required pattern="^[a-zA-Záéíóöőúüű]+(([',. -][a-zA-Záéíóöőúüű ])?[a-zA-Záéíóöőúüű]*)*$*)*$">
             </div>
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputEmail">Email</label>
                 <input type="email" class="form-control lots-input-field" id="inputEmail" placeholder="Email"
-                       name="inputEmail">
+                       name="inputEmail" required>
             </div>
             <div class="form-group col-md-3">
                 <label class="lots-input-label" for="inputPhoneNumber">Phone number</label>
-                <input type="phoneNumber" class="form-control lots-input-field" id="inputPhoneNumber"
+                <input type="tel" class="form-control lots-input-field" id="inputPhoneNumber"
                        placeholder="Phone number"
-                       name="inputPhoneNumber">
+                       name="inputPhoneNumber" required>
             </div>
         </div>
         <div class="form-group">
