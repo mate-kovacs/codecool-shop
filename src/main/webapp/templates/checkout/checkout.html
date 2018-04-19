@@ -38,7 +38,9 @@
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputName">Name</label>
                 <input type="text" class="form-control lots-input-field" id="inputName" placeholder="Name"
-                       name="inputName" required pattern="^[a-zA-Z\X]+(([',. -][a-zA-Z\X ])?[a-zA-Z\X]*)*$*)*$">
+                       name="inputName"
+                       required
+                       pattern="^(?:\p{L}|[_\- '.])+$">
             </div>
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputEmail">Email</label>
@@ -52,7 +54,7 @@
                        placeholder="Phone number"
                        name="inputPhoneNumber"
                        required
-                       pattern="([0-9])+" minlength="7" maxlength="12">
+                       pattern="([0-9])+" minlength="7" maxlength="10">
             </div>
         </div>
         <div class="form-group">
@@ -65,7 +67,7 @@
                        placeholder="1234 Main St"
                        name="inputShipAddress"
                        required
-                       pattern="((\w)+([.,\-\s:/'_])*)+">
+                       pattern="^(?:\p{L}|[_\- .,/:0-9])+$">
             </div>
         </div>
         <div class="form-row justify-content-end">
@@ -74,14 +76,14 @@
                 <input type="text" class="form-control lots-input-field" id="inputShipCity"
                        name="inputShipCity"
                        required
-                       pattern="((\w)+([\s\-])*)+">
+                       pattern="^(?:\p{L}|[_\- ])+$">
             </div>
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputShipCountry">Country</label>
                 <input type="text" class="form-control lots-input-field" id="inputShipCountry"
                        name="inputShipCountry"
                        required
-                       pattern="((\w)+([\s\-])*)+">
+                       pattern="^(?:\p{L}|[_\- ])+$">
             </div>
             <div class="form-group col-md-2">
                 <label class="lots-input-label" for="inputShipZip">Zip</label>
@@ -113,7 +115,7 @@
                            placeholder="1234 Main St"
                            name="inputBillAddress"
                            required
-                           pattern="((\w)+([.,\-\s:/'_])*)+">
+                           pattern="^(?:\p{L}|[_\- .,/:0-9])+$">
                 </div>
             </div>
             <div class="form-row justify-content-end">
@@ -122,14 +124,14 @@
                     <input type="text" class="form-control lots-input-field" id="inputBillCity"
                            name="inputBillCity"
                            required
-                           pattern="((\w)+([\s\-])*)+">
+                           pattern="^(?:\p{L}|[_\- ])+$">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="lots-input-label" for="inputBillCountry">Country</label>
                     <input type="text" class="form-control lots-input-field" id="inputBillCountry"
                            name="inputBillCountry"
                            required
-                           pattern="((\w)+([\s\-])*)+">
+                           pattern="^(?:\p{L}|[_\- ])+$">
                 </div>
                 <div class="form-group col-md-2">
                     <label class="lots-input-label" for="inputBillZip">Zip</label>
