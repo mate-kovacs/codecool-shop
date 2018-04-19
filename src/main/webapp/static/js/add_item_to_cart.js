@@ -3,7 +3,7 @@ $(function() {
 });
 
 function addEventListenerToButtons() {
-    let buttons = document.getElementsByClassName('addButton');
+    let buttons = document.getElementsByClassName('add-to-cart');
 
     $.each(buttons, function (j, button) {
         let id = button.dataset.id;
@@ -19,6 +19,8 @@ function addEventListenerToButtons() {
                     $('#totalPrice').html(priceSum + " USD");
                 }
             });
+            button.preventDefault();
+
         });
     });
 }

@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="author" content="Codecool"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Codecool Shop</title>
 
@@ -32,7 +32,11 @@
 
     <script src="/static/js/filter.js" defer></script>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <script type="text/javascript" src="/static/js/fly_to_element.js" defer></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 
 <body class="lots-main-page-body">
@@ -40,16 +44,9 @@
     <div class="lots-title text-center mt-5">
         <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
     </div>
+</div>
 
-    <!--<div class="jumbotron text-center">-->
-    <!--<h1>Codecool Shop</h1>-->
-    <!--<div id="shoppingCart" class="container-fluid">-->
-    <!--<span id="numberOfItems" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'"></span>-->
-    <!--<span id="totalPrice" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'"></span>-->
-    <!--<a id="goToCart" class="btn btn-success" href="/shoppingcart"><i class="fas fa-shopping-cart" style="font-size: 15px"></i><span style="font-family: 'Abyssinica SIL';font-size: 15px"> Pay</span></a>-->
-    <!--</div>-->
-    <!--</div>-->
-
+<div class="container">
     <div class="well well-sm">
         <strong id="category-title" th:text="${category.name}">Category Title</strong>
     </div>
@@ -61,14 +58,14 @@
             </label>
             <select name="select_category" id="select-category">
                 <option value="All" selected>All</option>
-                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}"></option>
+                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
             </select>
             <label for="select-supplier">
                 Supplier
             </label>
             <select name="select_supplier" id="select-supplier">
                 <option value="All" selected>All</option>
-                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"></option>
+                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
             </select>
             <button type="button" formmethod="get" id="filter-button">
                 Filter
@@ -76,27 +73,21 @@
         </form>
     </div>
 
-    <div id="products" class="row list-group">
+    <div id="products" class="row lots-justify-content-around">
 
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
-                     th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
-                    <p class="group inner list-group-item-text" th:text="${prod.description}">Product
-                        description... </p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <button class="btn btn-success addButton"
-                                    th:data-id="${prod.id}">
-                                Add to cart
-                            </button>
-                        </div>
+        <div class="lots-productcard col-xs-3 col-lg-3" th:each="prod,iterStat : ${products}">
+            <div class="lots-top_divider"></div>
+            <h4 class="lots-supplier_text" th:text="${prod.supplier.getName()}">Supplier name</h4>
+            <h4 class="lots-productname_text" th:text="${prod.name}">Product name</h4>
+            <p class="lots-productdesc_text" th:text="${prod.description}">Product description... </p>
+            <div class="lots-productcard_footer">
+                <div class="lots-bot_divider"></div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <p class="lots_price lead" th:text="${prod.getDefaultPrice()}">100</p>
                     </div>
+                    <div class="lots-currency-icon col-xs-12 col-md-4"></div>
+                        <div class="lots_add-btn addButton" th:data-id="${prod.id}"></div>
                 </div>
             </div>
         </div>

@@ -1,3 +1,8 @@
+body {
+    color: #d2d3ca;
+    font-family: 'Architects Daughter', cursive;
+}
+
 .glyphicon {
     margin-right:5px;
 }
@@ -60,6 +65,98 @@
 {
     margin: 0 0 11px;
 }
+
+.lots-productcard {
+    background-color: #21292e;
+    border-color: #d2d3ca;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 10px;
+}
+
+.lots-productcard:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 10px 10px 20px -1px rgba(0,0,0,0.56);
+}
+
+.lots-top_divider {
+    background-image: url("/static/img/text_divider_top.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40px;
+}
+
+.lots-bot_divider {
+    background-image: url("/static/img/text_divider_bottom.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40px;
+}
+
+.lots-justify-content-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.lots-supplier_text {
+    font-family: 'IM Fell English', serif;
+    font-size: 4vw;
+    text-align: center;
+    margin-top: 0;
+}
+
+.lots-productname_text {
+    font-family: 'IM Fell English', serif;
+    color: #6d7792;
+    font-size: 3vw;
+    -webkit-text-stroke: 0.2px black;
+    text-align: center;
+}
+
+.lots-productdesc_text {
+    text-align: center;
+    height: 180px;
+}
+
+.lots-productcard_footer {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+}
+
+.lots_price {
+    margin-left: 20px;
+}
+
+.lots-currency-icon {
+    height: 50px;
+    width: 50px;
+    megin-top: -10px;
+    background-image: url(/static/img/coin.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.lots_add-btn {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    background-color: #21292e;
+    border-color: #d2d3ca;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 50%;
+    background-image: url(/static/img/chest.png);
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+}
+
 
 .lots-main-page-body {
     background: url("/static/img/background_image.jpg") no-repeat fixed center;
