@@ -117,5 +117,43 @@ body {
 
 .lots-productdesc_text {
     text-align: center;
+    height: 180px;
+}
+
+.lots-productcard_footer {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+}
+
+.lots_price {
+    margin-left: 20px;
+}
+
+.lots-currency-icon {
+    height: 50px;
+    width: 50px;
+    megin-top: -10px;
+    background-image: url(/static/img/coin.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.lots_add-btn {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    background-color: #21292e;
+    border-color: #d2d3ca;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 50%;
+    background-image: url(/static/img/chest.png);
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
 }
 
