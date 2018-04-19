@@ -29,6 +29,7 @@ function addFilterListeners() {
                 productList.innerHTML = htmlString;
                 categoryTitle.innerHTML = category.options[category.selectedIndex].value;
                 addFlyEventListener();
+                addEventListenerToButtons();
                 changeURL(category.options[category.selectedIndex].value, supplier.options[supplier.selectedIndex].value)
             },
             error: function (xhr) {
@@ -65,10 +66,3 @@ function changeURL(category, supplier) {
     let urlString = "/?select_category=" + category + "&select_supplier=" + supplier;
     window.history.pushState(document.innerHTML, "Codecool Shop", urlString);
 }
-
-$(function () {
-    $('#add_another').click(function (e) {
-        e.preventDefault();
-        test();
-    });
-});
