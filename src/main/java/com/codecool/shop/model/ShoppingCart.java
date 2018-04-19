@@ -46,6 +46,10 @@ public class ShoppingCart {
     public int getNumberOfItems() {
         return shoppingCartContent.values().stream().mapToInt(i -> i).sum();
     }
+
+    public void clear() {
+        shoppingCartContent.clear();
+    }
 }
 
 
