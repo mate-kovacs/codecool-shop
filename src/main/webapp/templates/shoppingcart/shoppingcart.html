@@ -17,35 +17,66 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <!--Custom js-->
     <script src="/static/js/shoppingcart.js" defer></script>
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
 </head>
-<body>
+<body class="lots-main-page-body">
+<div class="container-fluid">
+    <div class="lots-title text-center mt-5">
+        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
+    </div>
+</div>
 <div class="container">
-<div class="item col-xs-4 col-lg-4" th:each="element : ${shoppingcart}" th:id="'productItem_' + ${element.key.id}">
-    <div class="thumbnail">
-        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${element.key.id} + '.jpg'" alt="" />
-        <div class="caption">
-            <h4 class="group inner list-group-item-heading" th:text="${element.key.name}">Product name</h4>
-            <p class="group inner list-group-item-text" th:text="${element.key.description}">Product description... </p>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <p class="lead" th:text="${element.key.getPrice()}">100 USD</p>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <button class="decrease_btn" data-process="decrease" th:data-id="${element.key.id}">-</button>
-                    <span class="quantity_field" th:text="${element.value}">1</span>
-                    <button class="increase_btn" data-process="increase" th:data-id="${element.key.id}">+</button>
+
+    <h2 class="lots-subtitle">Shopping cart</h2>
+
+    <div id="shoppingcart_field" class="lots-justify-content-around">
+
+        <div class="lots-product_wrapper" th:each="element : ${shoppingcart.getContent()}" th:id="'productItem_' + ${element.key.id}">
+            <div class="lots-shoppingcart_product">
+                <div class="lots-top_divider"></div>
+                <h4 class="lots-supplier_text" th:text="${element.key.supplier.getName()}">Supplier name</h4>
+                <h4 class="lots-productname_text" th:text="${element.key.name}">Product name</h4>
+                <p class="lots-productdesc_text" th:text="${element.key.description}">Product description... </p>
+                <div class="lots-bot_divider"></div>
+                <div class="lots-productcard_footer">
+                    <div class="lots-pricewrapper">
+                        <div class="lots_price" th:text="${element.key.getDefaultPrice()}">100</div>
+                        <div class="lots-currency-icon"></div>
+                    </div>
                 </div>
             </div>
+            <div class="lots-justify-content-center">
+                <div class="decrease_btn" data-process="decrease" th:data-id="${element.key.id}"><i class="fas fa-minus"></i></div>
+                <span class="quantity_field" th:text="${element.value}">1</span>
+                <div class="increase_btn" data-process="increase" th:data-id="${element.key.id}"><i class="fas fa-plus"></i></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row justify-content-end">
+        <div class="lots-shopcart_total_price_wrapper">
+            <div id="total_price_field" class="lots_price" th:text="${shoppingcart.sumCart()}">100</div>
+            <div class="lots-currency-icon"></div>
+        </div>
+        <div class="go-to-chekout text-center">
+            <a  class="go-to-checkout-btn" href="/checkout">
+                <img src="/static/img/pay.png" alt="" class="lots-pay-png">
+            </a>
         </div>
     </div>
 </div>
-    <div>
-        <a href="/checkout"><button>Checkout</button></a>
-    </div>
-</div>
+
 </body>
 </html>
+
+
+
+
+
