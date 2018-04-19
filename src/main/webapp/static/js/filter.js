@@ -27,7 +27,6 @@ function addFilterListeners() {
                 let productList = document.getElementById("products");
                 let categoryTitle = document.getElementById("category-title");
                 productList.innerHTML = htmlString;
-                categoryTitle.innerHTML = category.options[category.selectedIndex].value;
                 addFlyEventListener();
                 addEventListenerToButtons();
                 changeURL(category.options[category.selectedIndex].value, supplier.options[supplier.selectedIndex].value)
