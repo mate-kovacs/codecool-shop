@@ -1,5 +1,8 @@
-$(function()
-{
+$(function() {
+    addEventListenerToButtons();
+});
+
+function addEventListenerToButtons() {
     let buttons = document.getElementsByClassName('addButton');
 
     $.each(buttons, function (j, button) {
@@ -17,6 +20,5 @@ $(function()
                 }
             });
         });
-    })
-
-});
+    });
+}

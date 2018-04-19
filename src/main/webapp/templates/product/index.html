@@ -28,6 +28,8 @@
 
     <script src="/static/js/add_item_to_cart.js"></script>
 
+    <script src="/static/js/filter.js" defer></script>
+
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 
@@ -44,7 +46,7 @@
 
 <div class="container">
     <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
+        <strong id="category-title" th:text="${category.name}">Category Title</strong>
     </div>
 
     <div id="filter">
@@ -63,7 +65,7 @@
                 <option value="All" selected>All</option>
                 <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"></option>
             </select>
-            <button type="submit" formmethod="get">
+            <button type="button" formmethod="get" id="filter-button">
                 Filter
             </button>
         </form>

@@ -1,4 +1,5 @@
 package com.codecool.shop.controller;
+
 import org.json.JSONObject;
 
 import com.codecool.shop.model.User;
@@ -11,7 +12,6 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.*;
 
 import com.codecool.shop.model.ProductCategory;
@@ -26,10 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
@@ -74,18 +71,35 @@ public class ProductController extends HttpServlet {
                 productCategoryDataStore.filterProducts(
                         productDataStore.getAll(), category), supplier);
 
-//        Map params = new HashMap<>();
-//        params.put("category", productCategoryDataStore.find(1));
-//        params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
 
-        context.setVariable("recipient", "World");
-        context.setVariable("category_list", productCategoryDataStore.getAll());
-        context.setVariable("supplier_list", supplierDataStore.getAll());
-        context.setVariable("category", category);
-        context.setVariable("supplier", supplier);
-        context.setVariable("products", products);
+        if (req.getParameter("ajax") != null) {
+            JSONObject json = new JSONObject();
+            int numberOfProducts = 0;
+            for (Product product : products) {
 
-        engine.process("product/index.html", context, resp.getWriter());
+                json.put("Product" + numberOfProducts, new JSONObject()
+                    .put("title", product.getName())
+                    .put("description", product.getDescription())
+                    .put("id", product.getId())
+                    .put("price", product.getPrice()));
+                numberOfProducts ++;
+            }
+
+            resp.setContentType("application/json");
+            resp.getWriter().print(json);
+
+        } else {
+            context.setVariable("recipient", "World");
+            context.setVariable("category_list", productCategoryDataStore.getAll());
+            context.setVariable("supplier_list", supplierDataStore.getAll());
+            context.setVariable("category", category);
+            context.setVariable("supplier", supplier);
+            context.setVariable("products", products);
+
+            engine.process("product/index.html", context, resp.getWriter());
+        }
+
+
     }
 
     @Override
@@ -96,7 +110,7 @@ public class ProductController extends HttpServlet {
         if (session.isNew()) {
             session.setAttribute("UserObject", new User());
         }
-        User user = (User)session.getAttribute("UserObject");
+        User user = (User) session.getAttribute("UserObject");
         String productId = request.getParameter("id");
         ShoppingCart shoppingCart = user.shoppingCart;
         shoppingCart.addItem(Integer.parseInt(productId));
