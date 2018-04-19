@@ -10,7 +10,7 @@ function flyToElement(flyer, flyingTo) {
     let gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
 
     $(flyerClone).animate({
-        opacity: 0.0,
+        opacity: 1,
         left: gotoX,
         top: gotoY,
         // width: $(flyer).width()/divider,
@@ -19,7 +19,7 @@ function flyToElement(flyer, flyingTo) {
     function () {
         $(flyingTo).fadeOut('fast', function () {
             $(flyingTo).fadeIn('fast', function () {
-                $(flyerClone).fadeOut('fast', function () {
+                $(flyerClone).hide('fast', function () {
                     $(flyerClone).remove();
                 });
             });
