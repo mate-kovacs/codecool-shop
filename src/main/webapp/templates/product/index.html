@@ -47,37 +47,60 @@
     <div class="lots-title text-center mt-5">
         <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
-    <div id="shoppingCart" class="container-fluid lots-justify-content-around">
+    <div id="shoppingCart" class="container-fluid lots-justify-content-around" style="vertical-align:bottom">
+        <div id="filter" style="position: relative; top: 20px">
+            <form action="/" class="form-inline">
+                <label for="select-category">
+                    Category
+                </label>
+                <select name="select_category" id="select-category" class="form-control lots-filter-input" style="margin-right:10px">
+                    <option value="All" selected>All</option>
+                    <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
+                </select>
+                <label for="select-supplier">
+                    Supplier
+                </label>
+                <select name="select_supplier" id="select-supplier" class="form-control lots-filter-input">
+                    <option value="All" selected>All</option>
+                    <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
+                </select>
+                <button type="button" formmethod="get" id="filter-button" class="btn btn-warning" style="margin-left:10px">
+                    Filter
+                </button>
+            </form>
+        </div>
+
+        <p id="numberOfItems" style="font-size: 22px; position: relative; top: 20px; width: 30px;" th:text="${number_of_items} + ' items'" ></p>
         <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png"></a>
+        <p id="totalPrice" style="font-size: 22px;position: relative; top: 20px; left:-70px" th:text="${total_price}"></p>
     </div>
-    <div class="container-fluid lots-justify-content-around">
-        <p id="numberOfItems" style="font-size: 22px" th:text="${number_of_items} + ' items'"></p>
-        <p id="totalPrice" style="font-size: 22px" th:text="${total_price} + ' USD'"></p>
+    <div class="container-fluid">
+
     </div>
 </div>
 
 <div class="container">
-    <div id="filter">
-        <form action="/">
-            <label for="select-category">
-                Category
-            </label>
-            <select name="select_category" id="select-category">
-                <option value="All" selected>All</option>
-                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
-            </select>
-            <label for="select-supplier">
-                Supplier
-            </label>
-            <select name="select_supplier" id="select-supplier">
-                <option value="All" selected>All</option>
-                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
-            </select>
-            <button type="button" formmethod="get" id="filter-button">
-                Filter
-            </button>
-        </form>
-    </div>
+    <!--<div id="filter">-->
+        <!--<form action="/" class="form-inline">-->
+            <!--<label for="select-category">-->
+                <!--Category-->
+            <!--</label>-->
+            <!--<select name="select_category" id="select-category" class="form-control lots-filter-input">-->
+                <!--<option value="All" selected>All</option>-->
+                <!--<option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>-->
+            <!--</select>-->
+            <!--<label for="select-supplier">-->
+                <!--Supplier-->
+            <!--</label>-->
+            <!--<select name="select_supplier" id="select-supplier" class="form-control lots-filter-input">-->
+                <!--<option value="All" selected>All</option>-->
+                <!--<option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>-->
+            <!--</select>-->
+            <!--<button type="button" formmethod="get" id="filter-button" class="btn btn-warning">-->
+                <!--Filter-->
+            <!--</button>-->
+        <!--</form>-->
+    <!--</div>-->
 
     <div id="products" class="lots-justify-content-around">
 
