@@ -198,6 +198,8 @@ body {
     width: 70%;
     height: auto;
     margin-bottom: 20px;
+    margin-top: 2%;
+    cursor: pointer;
 }
 
 .lots-subtitle {
