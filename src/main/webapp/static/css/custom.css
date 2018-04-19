@@ -72,17 +72,19 @@ body {
     border-style: solid;
     border-width: 5px;
     border-radius: 10px;
-    height: 450px;
-    width: 350px;
+    height: 400px;
+    width: 300px;
     position: relative;
     margin-bottom: 80px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
     flex-shrink: 0;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .lots-productcard-content {
-    height: 400px;
+    height: 350px;
 }
 
 .lots-productcard:hover {
@@ -96,7 +98,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     height: 30px;
-    width: 300px;
+    width: 250px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -109,7 +111,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     height: 30px;
-    width: 300px;
+    width: 250px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -125,6 +127,7 @@ body {
     font-size: 2.6em;
     text-align: center;
     margin-top: 10px;
+    height: 30px;
 }
 
 .lots-productname_text {
@@ -133,18 +136,25 @@ body {
     font-size: 2em;
     -webkit-text-stroke: 0.2px black;
     text-align: center;
+    height: 80px;
 }
 
 .lots-productdesc_text {
     text-align: center;
-    height: 180px;
+    height: 100px;
+    margin-bottom: 0;
 }
 
 .lots-productcard_footer {
+    display: flex;
+    justify-content: center;
+}
+
+.lots-pricewrapper {
+
 }
 
 .lots_price {
-    margin-left: 100px;
     display: inline-block;
     font-size: 2em;
     vertical-align: top;
@@ -163,8 +173,8 @@ body {
 
 .lots_add-btn {
     position: absolute;
-    bottom: -50px;
-    right: -50px;
+    bottom: -30px;
+    right: -30px;
     background-color: #21292e;
     border-color: #d2d3ca;
     border-style: solid;
@@ -172,10 +182,11 @@ body {
     border-radius: 50%;
     background-image: url(/static/img/chest.png);
     background-position: center;
-    background-size: auto;
+    background-size: 60%;
     background-repeat: no-repeat;
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
+    padding: 5px;
 }
 
 
