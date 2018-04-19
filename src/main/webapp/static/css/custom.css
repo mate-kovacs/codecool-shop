@@ -157,3 +157,73 @@ body {
     width: 100px;
 }
 
+
+.lots-main-page-body {
+    background: url("/static/img/background_image.jpg") no-repeat fixed center;
+}
+
+.lots-title-image {
+    width: 70%;
+    height: auto;
+}
+
+.lots-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-size: 3rem;
+}
+
+.lots-font-color-white {
+    color: #d2d3ca;
+}
+
+.lots-daughter-font {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.lots-input-label {
+    font-size: 1.4rem;
+}
+
+.lots-form-title {
+    font-size: 1.7rem;
+}
+
+.lots-input-field, .lots-input-field:focus {
+    color: #d2d3ca;
+    border-radius: 5px;
+    padding: .25rem 1rem .25rem 1rem; !important;
+    background-color: #21292e;
+    border: solid #d2d3ca 2.4px;
+}
+
+.lots-input-field:focus, .lots-input-field[type]:focus {
+    border-color: rgba(234, 167, 17, 0.8);
+    box-shadow: 0 1px 1px rgba(234, 164, 17, 0.075);
+    outline: 0 none;
+}
+
+.go-to-pay-btn {
+    border: solid 0px;
+    background: transparent;
+    margin-top: 15%;
+    outline: 0 !important;
+}
+
+.go-to-pay-btn:active .go-to-pay-btn:focus{
+    border: none;
+    outline: 0 !important;
+}
+
+.go-to-pay {
+    background-color: #21292e;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: solid #d2d3ca 2.4px;
+    margin-bottom: 50px;
+}
+
+.lots-pay-png {
+    width: 80%;
+    height: auto;
+}
