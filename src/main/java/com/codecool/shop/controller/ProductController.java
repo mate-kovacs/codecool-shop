@@ -116,7 +116,7 @@ public class ProductController extends HttpServlet {
         shoppingCart.addItem(Integer.parseInt(productId));
 
         float priceSum = shoppingCart.sumCart();
-        int numberOfItems = shoppingCart.getContent().size();
+        int numberOfItems = shoppingCart.getNumberOfItems();
 
         JSONObject json = new JSONObject();
         json.put("priceSum", priceSum);
