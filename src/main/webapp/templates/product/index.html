@@ -44,7 +44,14 @@
     <div class="lots-title text-center mt-5">
         <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
     </div>
+    <div id="shoppingCart" class="container-fluid">
+        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img src="/static/img/Silver_Chest.png"></a>
+        <span id="numberOfItems" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'" th:text="${number_of_items} + ' items'"></span>
+        <span id="totalPrice" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'" th:text="${total_price} + ' USD'"></span>
+        <!--<a id="goToCart" class="btn btn-success cart-anchor" href="/shoppingcart"><i class="fas fa-shopping-cart" style="font-size: 15px"></i><span style="font-family: 'Abyssinica SIL';font-size: 15px"> Pay</span></a>-->
+    </div>
 </div>
+
 
 <div class="container">
     <div class="well well-sm">
