@@ -89,7 +89,13 @@ public class ProductController extends HttpServlet {
             resp.getWriter().print(json);
 
         } else {
-            context.setVariable("recipient", "World");
+            ShoppingCart shoppingCart = getShoppingCart(req);
+
+
+
+            context.setVariable("total_price", shoppingCart.sumCart());
+            context.setVariable("number_of_items", shoppingCart.getNumberOfItems());
+//            context.setVariable("recipient", "World");
             context.setVariable("category_list", productCategoryDataStore.getAll());
             context.setVariable("supplier_list", supplierDataStore.getAll());
             context.setVariable("category", category);
@@ -105,14 +111,9 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session;
-        session = request.getSession();
-        if (session.isNew()) {
-            session.setAttribute("UserObject", new User());
-        }
-        User user = (User) session.getAttribute("UserObject");
         String productId = request.getParameter("id");
-        ShoppingCart shoppingCart = user.shoppingCart;
+        ShoppingCart shoppingCart = getShoppingCart(request);
+
         shoppingCart.addItem(Integer.parseInt(productId));
 
         float priceSum = shoppingCart.sumCart();
@@ -124,6 +125,16 @@ public class ProductController extends HttpServlet {
 
         response.setContentType("application/json");
         response.getWriter().print(json);
+    }
+
+    private ShoppingCart getShoppingCart(HttpServletRequest request) {
+        HttpSession session;
+        session = request.getSession();
+        if (session.isNew()) {
+            session.setAttribute("UserObject", new User());
+        }
+        User user = (User) session.getAttribute("UserObject");
+        return user.shoppingCart;
     }
 
 }
