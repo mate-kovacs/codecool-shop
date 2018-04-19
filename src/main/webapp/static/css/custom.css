@@ -220,6 +220,8 @@ body {
     width: 70%;
     height: auto;
     margin-bottom: 20px;
+    margin-top: 2%;
+    cursor: pointer;
 }
 
 .lots-subtitle {
@@ -319,4 +321,14 @@ body {
 .lots-shopcart_total_price_wrapper {
     padding-top: 50px;
     margin-right: 50px;
+}
+
+.lots-border-gold {
+    border: solid 3px #247b4b;
+    width: 40%;
+    text-align: center;
+}
+
+.font-payment-methods:hover {
+    cursor: pointer;
 }
