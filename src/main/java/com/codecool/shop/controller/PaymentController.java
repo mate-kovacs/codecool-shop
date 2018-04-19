@@ -34,6 +34,5 @@ public class PaymentController extends HttpServlet {
             }
         }
         user.shoppingCart.clear();
-        resp.sendRedirect("/");
     }
 }

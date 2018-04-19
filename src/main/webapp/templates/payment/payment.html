@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Payment</title>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js" defer></script>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -79,7 +81,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="submit" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn">
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>
@@ -130,15 +132,17 @@
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="submit" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn">
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>
         </div>
     </form>
     <!--Alert for success paying-->
-    <div id="pay-success" class="alert alert-success" role="alert" hidden>
-        Thank you! Your payment was processed successfully.
+    <div class="lots-justify-content-around">
+        <div id="pay-success" class="alert lots-input-field lots-border-gold" role="alert" hidden>
+            Thank you! Your payment was processed successfully.
+        </div>
     </div>
 </div>
 

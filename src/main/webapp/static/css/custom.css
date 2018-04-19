@@ -284,3 +284,9 @@ body {
     width: auto;
     height: auto;
 }
+
+.lots-border-gold {
+    border: solid 3px #247b4b;
+    width: 40%;
+    text-align: center;
+}
