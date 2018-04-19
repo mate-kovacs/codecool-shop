@@ -72,6 +72,13 @@ body {
     border-style: solid;
     border-width: 5px;
     border-radius: 10px;
+    height: 450px;
+    width: 350px;
+    position: relative;
+    margin-bottom: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+    flex-shrink: 0;
 }
 
 .lots-productcard-content {
@@ -88,7 +95,12 @@ body {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 40px;
+    height: 30px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
 }
 
 .lots-bot_divider {
@@ -96,25 +108,29 @@ body {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 40px;
+    height: 30px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .lots-justify-content-around {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .lots-supplier_text {
     font-family: 'IM Fell English', serif;
-    font-size: 4vw;
+    font-size: 2.6em;
     text-align: center;
-    margin-top: 0;
+    margin-top: 10px;
 }
 
 .lots-productname_text {
     font-family: 'IM Fell English', serif;
     color: #6d7792;
-    font-size: 3vw;
+    font-size: 2em;
     -webkit-text-stroke: 0.2px black;
     text-align: center;
 }
@@ -125,19 +141,20 @@ body {
 }
 
 .lots-productcard_footer {
-    position: absolute;
-    bottom: 0;
-    width: 90%;
 }
 
 .lots_price {
-    margin-left: 20px;
+    margin-left: 100px;
+    display: inline-block;
+    font-size: 2em;
+    vertical-align: top;
 }
 
 .lots-currency-icon {
+    display: inline-block;
     height: 50px;
     width: 50px;
-    megin-top: -10px;
+    margin-top: -5px;
     background-image: url(/static/img/coin.png);
     background-position: center;
     background-size: contain;
