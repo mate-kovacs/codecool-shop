@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Checkout</title>
+
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -18,13 +23,13 @@
     <script src="/static/js/checkout.js" defer></script>
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <!--Custom Font-->
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
-    <title>Checkout</title>
 </head>
 <body class="lots-main-page-body">
 <div class="container lots-font-color-white">
     <div class="lots-title text-center mt-5">
-        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
+        <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
     <form action="/checkout" method="post" class="lots-daughter-font">
         <div class="form-row">

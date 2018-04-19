@@ -28,8 +28,8 @@ public class ShoppingCart {
         return shoppingCartContent;
     }
 
-    public float sumCart(){
-        float sum = 0;
+    public int sumCart(){
+        int sum = 0;
         for (Map.Entry<Product, Integer> entry : shoppingCartContent.entrySet()) {
             Product product = entry.getKey();
             Integer quantity = entry.getValue();
@@ -45,6 +45,10 @@ public class ShoppingCart {
 
     public int getNumberOfItems() {
         return shoppingCartContent.values().stream().mapToInt(i -> i).sum();
+    }
+
+    public void clear() {
+        shoppingCartContent.clear();
     }
 }
 
