@@ -290,3 +290,7 @@ body {
     width: 40%;
     text-align: center;
 }
+
+.font-payment-methods:hover {
+    cursor: pointer;
+}
