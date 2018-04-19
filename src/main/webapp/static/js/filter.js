@@ -23,18 +23,19 @@ function addFilterListeners() {
                 $.each(response, function(index, value) {
                     htmlString += itemHtmlText(value.id, value.title, value.description, value.price);
                 });
+                addFlyEventListener();
                 let productList = document.getElementById("products");
                 let categoryTitle = document.getElementById("category-title");
                 productList.innerHTML = htmlString;
                 categoryTitle.innerHTML = category.options[category.selectedIndex].value;
-                addEventListenerToButtons();
+                addFlyEventListener();
                 changeURL(category.options[category.selectedIndex].value, supplier.options[supplier.selectedIndex].value)
             },
             error: function (xhr) {
                 alert('something went wrong');
             }
         });
-    })
+    });
 }
 
 function itemHtmlText(id, title, description, price){
@@ -50,7 +51,7 @@ function itemHtmlText(id, title, description, price){
             "                            <p class=\"lead\">" + price + "</p>\n" +
             "                        </div>\n" +
             "                        <div class=\"col-xs-12 col-md-6\">\n" +
-            "                                <a href=\"javascript:void(0);\" class=\"btn btn-success add-to-cart\" data-id=\"" + id + "\">\n" +
+            "                                <a class=\"btn btn-success add-to-cart\" data-id=\"" + id + "\">\n" +
             "                                    Add to cart\n" +
             "                                </a>\n" +
             "                        </div>\n" +
@@ -65,3 +66,9 @@ function changeURL(category, supplier) {
     window.history.pushState(document.innerHTML, "Codecool Shop", urlString);
 }
 
+$(function () {
+    $('#add_another').click(function (e) {
+        e.preventDefault();
+        test();
+    });
+});

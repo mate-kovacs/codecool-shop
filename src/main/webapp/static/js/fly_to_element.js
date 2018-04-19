@@ -28,6 +28,11 @@ function flyToElement(flyer, flyingTo) {
 }
 
 $(document).ready(function () {
+    addFlyEventListener();
+});
+
+
+function addFlyEventListener(){
     $('.add-to-cart').on('click', function () {
         $('html, body').animate({
             'scrolltop' : $(".cart-anchor").position().top
@@ -35,4 +40,4 @@ $(document).ready(function () {
         let itemImg =  $(this).parent().parent().parent().parent().find('img').eq(0);
         flyToElement($(itemImg), $('.cart-anchor'));
     })
-});
+}
