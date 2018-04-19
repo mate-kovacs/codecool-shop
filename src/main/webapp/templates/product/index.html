@@ -30,6 +30,8 @@
 
     <script src="/static/js/filter.js" defer></script>
 
+    <script type="text/javascript" src="/static/js/fly_to_element.js" defer></script>
+
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
@@ -40,9 +42,9 @@
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
     <div id="shoppingCart" class="container-fluid">
-        <span id="numberOfItems" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'"></span>
-        <span id="totalPrice" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'"></span>
-        <a id="goToCart" class="btn btn-success" href="/shoppingcart"><i class="fas fa-shopping-cart" style="font-size: 15px"></i><span style="font-family: 'Abyssinica SIL';font-size: 15px"> Pay</span></a>
+        <span id="numberOfItems" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'" th:text="${number_of_items} + ' items'"></span>
+        <span id="totalPrice" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'" th:text="${total_price} + ' USD'"></span>
+        <a id="goToCart" class="btn btn-success cart-anchor" href="/shoppingcart"><i class="fas fa-shopping-cart" style="font-size: 15px"></i><span style="font-family: 'Abyssinica SIL';font-size: 15px"> Pay</span></a>
     </div>
 </div>
 
@@ -58,14 +60,14 @@
             </label>
             <select name="select_category" id="select-category">
                 <option value="All" selected>All</option>
-                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}"></option>
+                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
             </select>
             <label for="select-supplier">
                 Supplier
             </label>
             <select name="select_supplier" id="select-supplier">
                 <option value="All" selected>All</option>
-                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"></option>
+                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
             </select>
             <button type="button" formmethod="get" id="filter-button">
                 Filter
@@ -91,7 +93,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
