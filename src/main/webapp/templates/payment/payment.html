@@ -76,17 +76,23 @@
                 <input type="email" class="form-control lots-input-field" id="exampleInputEmail1"
                        aria-describedby="emailHelp"
                        placeholder="Enter email" required>
+                <small id="email-error" class="form-text text-muted lots-font-color-white" hidden>
+                    Invalid email address!
+                </small>
                 <small id="emailHelp" class="form-text text-muted lots-font-color-white">We'll never share your email
                     with anyone else.
                 </small>
                 <label class="lots-input-label" for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control lots-input-field" id="exampleInputPassword1"
                        placeholder="Password" required>
+                <small id="password-error" class="form-text text-muted lots-font-color-white" hidden>
+                    Invalid password!
+                </small>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="button" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn"data-payment-method="paypal" >
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>
@@ -137,7 +143,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="button" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn" data-payment-method="cc">
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>

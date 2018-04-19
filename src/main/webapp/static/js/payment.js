@@ -22,18 +22,26 @@ payment = {
         let payingButtons = document.getElementsByClassName("go-to-pay-btn");
         for (let payButton of payingButtons) {
             payButton.addEventListener('click', function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/payment",
-                    data: "Success",
-                    success: function (response) {
-                        document.getElementById("pay-success").removeAttribute("hidden");
-                        const timer = ms => new Promise(resolve => setTimeout(resolve, ms));
-                        timer(2000).then(() => {
-                            document.location.href = "/";
-                        })
-                    }
-                })
+                let success = false;
+                if (this.getAttribute("data-payment-method") === "cc") {
+                    success = payment.checkCCFields();
+                } else {
+                    success = payment.checkPaypalFields();
+                }
+                if (success) {
+                    $.ajax({
+                        method: "POST",
+                        url: "/payment",
+                        data: "Success",
+                        success: function (response) {
+                            document.getElementById("pay-success").removeAttribute("hidden");
+                            const timer = ms => new Promise(resolve => setTimeout(resolve, ms));
+                            timer(2000).then(() => {
+                                document.location.href = "/";
+                            })
+                        }
+                    })
+                }
             });
         }
     },
@@ -64,6 +72,30 @@ payment = {
                 }
             }
         }
+    },
+
+    checkPaypalFields: function () {
+        let email = document.getElementById("exampleInputEmail1").value;
+        if (!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g)) {
+            document.getElementById("email-error").removeAttribute("hidden");
+            return false;
+        } else {
+            document.getElementById("email-error").setAttribute("hidden", true);
+        }
+
+        let password = document.getElementById("exampleInputPassword1").value;
+        if (!password) {
+            document.getElementById("password-error").removeAttribute("hidden");
+            return false;
+        } else {
+            document.getElementById("password-error").setAttribute("hidden", true);
+        }
+        return true;
+    },
+
+    checkCCFields: function () {
+        console.log("cc");
+        return true;
     }
 };
 
