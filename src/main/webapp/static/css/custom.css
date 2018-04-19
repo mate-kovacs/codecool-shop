@@ -198,6 +198,8 @@ body {
     width: 70%;
     height: auto;
     margin-bottom: 20px;
+    margin-top: 2%;
+    cursor: pointer;
 }
 
 .lots-subtitle {
@@ -281,4 +283,14 @@ body {
     max-height:170px;
     width: auto;
     height: auto;
+}
+
+.lots-border-gold {
+    border: solid 3px #247b4b;
+    width: 40%;
+    text-align: center;
+}
+
+.font-payment-methods:hover {
+    cursor: pointer;
 }

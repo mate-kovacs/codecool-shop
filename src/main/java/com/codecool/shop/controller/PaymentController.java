@@ -33,6 +33,6 @@ public class PaymentController extends HttpServlet {
                 break;
             }
         }
-        resp.sendRedirect("/");
+        user.shoppingCart.clear();
     }
 }

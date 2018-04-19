@@ -19,10 +19,21 @@ payment = {
     },
 
     addEventListenerPayButtons: function () {
-        let payingButtons = document.getElementsByClassName("pay-btn");
+        let payingButtons = document.getElementsByClassName("go-to-pay-btn");
         for (let payButton of payingButtons) {
             payButton.addEventListener('click', function () {
-                document.getElementById("pay-success").removeAttribute("hidden");
+                $.ajax({
+                    method: "POST",
+                    url: "/payment",
+                    data: "Success",
+                    success: function (response) {
+                        document.getElementById("pay-success").removeAttribute("hidden");
+                        const timer = ms => new Promise(resolve => setTimeout(resolve, ms));
+                        timer(2000).then(() => {
+                            document.location.href = "/";
+                        })
+                    }
+                })
             });
         }
     },
@@ -44,7 +55,7 @@ payment = {
             for (element of matches) {
                 if (element === current) {
                     if (isNaN(parseInt(inputData, 10))) {
-                        cardNumber.value = current.substr(0,current.length-1);
+                        cardNumber.value = current.substr(0, current.length - 1);
                         break;
                     } else if (current.length < 19) {
                         cardNumber.value = current + "-";
