@@ -19,7 +19,7 @@ function addEventListenerToButtons() {
                     $('#totalPrice').html(priceSum + " USD");
                 }
             });
-            button.preventDefault();
+            // button.preventDefault();
 
         });
     });

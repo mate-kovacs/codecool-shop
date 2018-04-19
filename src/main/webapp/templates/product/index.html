@@ -44,12 +44,16 @@
     <div class="lots-title text-center mt-5">
         <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
     </div>
+    <div id="shoppingCart" class="container-fluid lots-justify-content-around">
+        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png"></a>
+    </div>
+    <div class="container-fluid lots-justify-content-around">
+        <p id="numberOfItems" style="font-size: 22px" th:text="${number_of_items} + ' items'"></p>
+        <p id="totalPrice" style="font-size: 22px" th:text="${total_price} + ' USD'"></p>
+    </div>
 </div>
 
 <div class="container">
-    <div class="well well-sm">
-        <strong id="category-title" th:text="${category.name}">Category Title</strong>
-    </div>
 
     <div id="filter">
         <form action="/">
@@ -75,7 +79,7 @@
 
     <div id="products" class="lots-justify-content-around">
 
-        <div class="lots-productcard" th:each="prod,iterStat : ${products}">
+        <div class="lots-productcard" th:each="prod,iterStat : ${products}" th:id="'product_' + ${prod.id}">
             <div class="lots-top_divider"></div>
             <h4 class="lots-supplier_text" th:text="${prod.supplier.getName()}">Supplier name</h4>
             <h4 class="lots-productname_text" th:text="${prod.name}">Product name</h4>
@@ -87,14 +91,11 @@
                     <div class="lots-currency-icon"></div>
                 </div>
             </div>
-            <div class="lots_add-btn addButton" th:data-id="${prod.id}"></div>
+            <div class="lots_add-btn add-to-cart" th:data-id="${prod.id}"></div>
         </div>
-
     </div>
 
 </div>
-
-<div th:replace="footer.html :: copy"></div>
 
 </body>
 </html>

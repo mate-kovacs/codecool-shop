@@ -10,16 +10,16 @@ function flyToElement(flyer, flyingTo) {
     let gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
 
     $(flyerClone).animate({
-        opacity: 0.4,
+        opacity: 1,
         left: gotoX,
         top: gotoY,
-        width: $(flyer).width()/divider,
-        height: $(flyer).height()/divider
-    }, 700,
+        // width: $(flyer).width()/divider,
+        // height: $(flyer).height()/divider
+    }, 1000,
     function () {
         $(flyingTo).fadeOut('fast', function () {
             $(flyingTo).fadeIn('fast', function () {
-                $(flyerClone).fadeOut('fast', function () {
+                $(flyerClone).hide('fast', function () {
                     $(flyerClone).remove();
                 });
             });
@@ -34,10 +34,12 @@ $(document).ready(function () {
 
 function addFlyEventListener(){
     $('.add-to-cart').on('click', function () {
+        let id = this.dataset.id;
         $('html, body').animate({
             'scrolltop' : $(".cart-anchor").position().top
         });
-        let itemImg =  $(this).parent().parent().parent().parent().find('img').eq(0);
-        flyToElement($(itemImg), $('.cart-anchor'));
+        // let itemImg =  $(this).parent().parent().parent().parent().parent().find('div').eq(0);
+        let itemImg = document.getElementById("product_" + id);
+        flyToElement(itemImg, $('.cart-anchor'));
     })
 }

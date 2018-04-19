@@ -23,8 +23,7 @@
     <script src="/static/js/payment.js" defer></script>
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet"
-          defer>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
 </head>
 <body class="lots-main-page-body">
 <div class="container">
@@ -75,7 +74,7 @@
                 </small>
                 <label class="lots-input-label" for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control lots-input-field" id="exampleInputPassword1"
-                       placeholder="Password">
+                       placeholder="Password" required>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -100,7 +99,7 @@
                        required
                        autocomplete="cc-name"
                        aria-required="true" aria-invalid="false" aria-describedby="cc-name-error"
-                       pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+                       pattern="^(?:\p{L}|[_\- '])+$">
             </div>
         </div>
         <div class="row justify-content-center">
