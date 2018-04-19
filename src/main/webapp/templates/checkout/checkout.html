@@ -41,13 +41,16 @@
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputEmail">Email</label>
                 <input type="email" class="form-control lots-input-field" id="inputEmail" placeholder="Email"
-                       name="inputEmail" required>
+                       name="inputEmail"
+                       required>
             </div>
             <div class="form-group col-md-3">
                 <label class="lots-input-label" for="inputPhoneNumber">Phone number</label>
                 <input type="tel" class="form-control lots-input-field" id="inputPhoneNumber"
                        placeholder="Phone number"
-                       name="inputPhoneNumber" required>
+                       name="inputPhoneNumber"
+                       required
+                       pattern="([0-9])+" minlength="7" maxlength="12">
             </div>
         </div>
         <div class="form-group">
@@ -58,21 +61,22 @@
                 <label class="lots-input-label" for="inputShipAddress">Address</label>
                 <input type="text" class="form-control lots-input-field" id="inputShipAddress"
                        placeholder="1234 Main St"
-                       name="inputShipAddress">
+                       name="inputShipAddress"
+                       required>
             </div>
         </div>
         <div class="form-row justify-content-end">
             <div class="form-group col-md-5">
                 <label class="lots-input-label" for="inputShipCity">City</label>
-                <input type="text" class="form-control lots-input-field" id="inputShipCity" name="inputShipCity">
+                <input type="text" class="form-control lots-input-field" id="inputShipCity" name="inputShipCity" required>
             </div>
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputShipCountry">Country</label>
-                <input type="text" class="form-control lots-input-field" id="inputShipCountry" name="inputShipCountry">
+                <input type="text" class="form-control lots-input-field" id="inputShipCountry" name="inputShipCountry" required>
             </div>
             <div class="form-group col-md-2">
                 <label class="lots-input-label" for="inputShipZip">Zip</label>
-                <input type="text" class="form-control lots-input-field" id="inputShipZip" name="inputShipZip">
+                <input type="text" class="form-control lots-input-field" id="inputShipZip" name="inputShipZip" required>
             </div>
         </div>
         <div class="row justify-content-end">
