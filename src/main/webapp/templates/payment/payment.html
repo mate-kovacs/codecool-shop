@@ -21,54 +21,121 @@
             crossorigin="anonymous"></script>
     <!--Custom js-->
     <script src="/static/js/payment.js" defer></script>
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet"
+          defer>
 </head>
-<body>
+<body class="lots-main-page-body">
 <div class="container">
-    <div class="payment-methods">
-        <button id="pay-button-creditcard" type="button" class="btn btn-info">Credit Card <i
-                class="fas fa-credit-card"></i></button>
-        <button id="pay-button-paypal" type="button" class="btn btn-info">PayPal <i class="fab fa-cc-paypal"></i>
-        </button>
+    <div class="lots-title text-center mt-5">
+        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
+    </div>
+    <div class="payment-methods text-center">
+        <div class="row">
+            <div class="lots-productcard col">
+                <div class="lots-top_divider"></div>
+                <div class="lots-productcard-content">
+                    <button id="pay-button-creditcard" type="button" class="lots-productcard-button">
+                        <i class="fas fa-credit-card fa-7x"></i>
+                    </button>
+                </div>
+                <div class="lots-productcard_footer">
+                    <div class="lots-bot_divider"></div>
+                </div>
+            </div>
+            <div class="lots-productcard col">
+                <div class="lots-top_divider"></div>
+                <div class="lots-productcard-content">
+                    <button id="pay-button-paypal" type="button" class="lots-productcard-button">
+                        <i class="fab fa-cc-paypal fa-7x"></i></button>
+                </div>
+                <div class="lots-productcard_footer">
+                    <div class="lots-bot_divider"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--Form for paypay-->
     <form class="paypal-form" action="/payment" method="post" hidden>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email" required>
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="form-row justify-content-end">
+            <div class="form-group col-9">
+                <h2 class="lots-subtitle"><i class="fab fa-paypal lots-font-color-gold"></i> Pay Pal</h2>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <div class="row justify-content-center">
+            <div class="form-group col-4">
+                <label class="lots-input-label" for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control lots-input-field" id="exampleInputEmail1"
+                       aria-describedby="emailHelp"
+                       placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted lots-font-color-white">We'll never share your email
+                    with anyone else.
+                </small>
+                <label class="lots-input-label" for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control lots-input-field" id="exampleInputPassword1"
+                       placeholder="Password">
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary pay-btn">Log in</button>
+        <div class="row justify-content-center">
+            <div class="go-to-pay text-center">
+                <button type="submit" class="go-to-pay-btn">
+                    <img src="/static/img/pay.png" alt="" class="lots-pay-png">
+                </button>
+            </div>
+        </div>
     </form>
     <!--Form for credit card-->
     <form class="cc-form" action="/payment" method="post" hidden>
-        <div class="form-group has-success">
-            <label for="cc-name" class="control-label mb-1">Name on card</label>
-            <input id="cc-name" name="cc-name" type="text" class="form-control cc-name" required autocomplete="cc-name"
-                   aria-required="true" aria-invalid="false" aria-describedby="cc-name-error" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+        <div class="form-row justify-content-end">
+            <div class="form-group col-10">
+                <h2 class="lots-subtitle"><i class="far fa-credit-card lots-font-color-gold"></i> Credit card</h2>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="cc-number" class="control-label mb-1">Card number</label>
-            <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number"
-                   required pattern="(-*([0-9]{4})){4}" MAXLENGTH="19">
-            <span class="invalid-feedback">Enter a valid 16 digit card number</span>
+        <div class="row justify-content-center">
+            <div class="has-success col-5">
+                <label for="cc-name" class="control-label mb-1 lots-input-label">Name on card</label>
+                <input id="cc-name" name="cc-name" type="text" class="form-control cc-name lots-input-field"
+                       required
+                       autocomplete="cc-name"
+                       aria-required="true" aria-invalid="false" aria-describedby="cc-name-error"
+                       pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="cc-exp" class="control-label mb-1">Expiration</label>
-            <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" required placeholder="MM / YY"
-                   autocomplete="cc-exp" pattern="(((([0])([0-9]))|(([1])([0-2])))/(([1][9])|([2-9][0-9])))|(((([0])([4-9]))|(([1])([0-2])))/(([1][8])))">
-            <span class="invalid-feedback">Enter the expiration date</span>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <label for="cc-number" class="control-label mb-1 lots-input-label">Card number</label>
+                <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number lots-input-field"
+                       required pattern="(-*([0-9]{4})){4}" MAXLENGTH="19">
+                <span class="invalid-feedback">Enter a valid 16 digit card number</span>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="cc-security-code">Security Code</label>
-            <input type="password" class="form-control" id="cc-security-code" placeholder="CCV" required pattern="([0-9]{3})">
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <label for="cc-exp" class="control-label mb-1 lots-input-label">Expiration</label>
+                <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp lots-input-field" required
+                       placeholder="MM / YY"
+                       autocomplete="cc-exp"
+                       pattern="(((([0])([0-9]))|(([1])([0-2])))/(([1][9])|([2-9][0-9])))|(((([0])([4-9]))|(([1])([0-2])))/(([1][8])))">
+                <span class="invalid-feedback">Enter the expiration date</span>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary pay-btn">Pay</button>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <label class="lots-input-label" for="cc-security-code">Security Code</label>
+                <input type="password" class="form-control lots-input-field" id="cc-security-code" placeholder="CCV"
+                       required
+                       pattern="([0-9]{3})">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="go-to-pay text-center">
+                <button type="submit" class="go-to-pay-btn">
+                    <img src="/static/img/pay.png" alt="" class="lots-pay-png">
+                </button>
+            </div>
+        </div>
     </form>
     <!--Alert for success paying-->
     <div id="pay-success" class="alert alert-success" role="alert" hidden>
