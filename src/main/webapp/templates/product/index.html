@@ -80,7 +80,7 @@
 
     <div id="products" class="row lots-justify-content-around">
 
-        <div class="lots-productcard col-xs-3 col-lg-3" th:each="prod,iterStat : ${products}">
+        <div class="lots-productcard col-xs-3 col-lg-3" th:each="prod,iterStat : ${products}" th:id="'product_' + ${prod.id}">
             <div class="lots-top_divider"></div>
             <h4 class="lots-supplier_text" th:text="${prod.supplier.getName()}">Supplier name</h4>
             <h4 class="lots-productname_text" th:text="${prod.name}">Product name</h4>
@@ -92,7 +92,7 @@
                         <p class="lots_price lead" th:text="${prod.getDefaultPrice()}">100</p>
                     </div>
                     <div class="lots-currency-icon col-xs-12 col-md-4"></div>
-                        <div class="lots_add-btn addButton" th:data-id="${prod.id}"></div>
+                        <div class="lots_add-btn add-to-cart" th:data-id="${prod.id}"></div>
                 </div>
             </div>
         </div>
