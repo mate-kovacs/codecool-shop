@@ -55,7 +55,7 @@
         <div class="form-group">
             <label for="cc-number" class="control-label mb-1">Card number</label>
             <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number"
-                   required pattern="[0-9]{16}">
+                   required pattern="(-*([0-9]{4})){4}" MAXLENGTH="19">
             <span class="invalid-feedback">Enter a valid 16 digit card number</span>
         </div>
         <div class="form-group">
