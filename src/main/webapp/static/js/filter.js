@@ -23,9 +23,7 @@ function addFilterListeners() {
                 $.each(response, function (index, value) {
                     htmlString += itemHtmlText(value.id, value.title, value.description, value.price, value.supplier);
                 });
-                //   addFlyEventListener();
                 let productList = document.getElementById("products");
-                //   let categoryTitle = document.getElementById("category-title");
                 productList.innerHTML = htmlString;
                 addFlyEventListener();
                 addEventListenerToButtons();
