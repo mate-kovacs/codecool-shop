@@ -91,11 +91,8 @@ public class ProductController extends HttpServlet {
         } else {
             ShoppingCart shoppingCart = getShoppingCart(req);
 
-
-
             context.setVariable("total_price", shoppingCart.sumCart());
             context.setVariable("number_of_items", shoppingCart.getNumberOfItems());
-//            context.setVariable("recipient", "World");
             context.setVariable("category_list", productCategoryDataStore.getAll());
             context.setVariable("supplier_list", supplierDataStore.getAll());
             context.setVariable("category", category);
@@ -104,8 +101,6 @@ public class ProductController extends HttpServlet {
 
             engine.process("product/index.html", context, resp.getWriter());
         }
-
-
     }
 
     @Override
