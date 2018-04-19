@@ -47,9 +47,9 @@
     <div class="lots-title text-center mt-5">
         <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
-    <div id="shoppingCart" class="container-fluid lots-justify-content-around" style="vertical-align:bottom">
-        <div id="filter" style="position: relative; top: 30px; right:20px">
-            <form action="/" class="form-inline">
+    <div id="shoppingCart" class="container-fluid lots-justify-content-center" style="vertical-align:bottom; display: inline; margin: 0 auto">
+        <div id="filter" style="display: inline; vertical-align: bottom; margin: 0 auto" >
+            <form action="/" class="form-inline" style="display: inline; vertical-align: bottom">
                 <label for="select-category">
                     Category
                 </label>
@@ -70,9 +70,9 @@
             </form>
         </div>
 
-        <p id="numberOfItems" style="font-size: 22px; position: relative; top: 20px; width: 40px;" th:text="${number_of_items} + ' items'" ></p>
-        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png"></a>
-        <p id="totalPrice" style="font-size: 22px;position: relative; top: 20px; left:-70px; width:40px" th:text="${total_price}"></p>
+        <p id="numberOfItems" style="font-size: 22px;display: inline" th:text="${number_of_items} + ' items'" class="d-inline-block"></p>
+        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png" style="display: inline;justify-content: center"></a>
+        <p id="totalPrice" style="font-size: 22px;display: inline" th:text="${total_price}"></p>
     </div>
     <div class="container-fluid">
 
@@ -80,28 +80,6 @@
 </div>
 
 <div class="container">
-    <!--<div id="filter">-->
-        <!--<form action="/" class="form-inline">-->
-            <!--<label for="select-category">-->
-                <!--Category-->
-            <!--</label>-->
-            <!--<select name="select_category" id="select-category" class="form-control lots-filter-input">-->
-                <!--<option value="All" selected>All</option>-->
-                <!--<option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>-->
-            <!--</select>-->
-            <!--<label for="select-supplier">-->
-                <!--Supplier-->
-            <!--</label>-->
-            <!--<select name="select_supplier" id="select-supplier" class="form-control lots-filter-input">-->
-                <!--<option value="All" selected>All</option>-->
-                <!--<option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>-->
-            <!--</select>-->
-            <!--<button type="button" formmethod="get" id="filter-button" class="btn btn-warning">-->
-                <!--Filter-->
-            <!--</button>-->
-        <!--</form>-->
-    <!--</div>-->
-
     <div id="products" class="lots-justify-content-around">
 
         <div class="lots-productcard" th:each="prod,iterStat : ${products}" th:id="'product_' + ${prod.id}">

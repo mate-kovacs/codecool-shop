@@ -283,14 +283,14 @@ body {
     max-height:170px;
     width: auto;
     height: auto;
-    position: relative;
-    top:-30px;
-    left: -40px;
+    /*position: relative;*/
+    /*top:-30px;*/
+    /*left: -40px;*/
 }
 
 
 .lots-filter-input{
-    width:10%;
+    width:100px;
 }
 
 .lots-border-gold {
