@@ -28,6 +28,7 @@ function addFilterListeners() {
                 productList.innerHTML = htmlString;
                 categoryTitle.innerHTML = category.options[category.selectedIndex].value;
                 addEventListenerToButtons();
+                changeURL(category.options[category.selectedIndex].value, supplier.options[supplier.selectedIndex].value)
             },
             error: function (xhr) {
                 alert('something went wrong');
@@ -57,5 +58,10 @@ function itemHtmlText(id, title, description, price){
             "                </div>\n" +
             "            </div>\n" +
             "        </div>";
+}
+
+function changeURL(category, supplier) {
+    let urlString = "/?select_category=" + category + "&select_supplier=" + supplier;
+    window.history.pushState(document.innerHTML, "Codecool Shop", urlString);
 }
 
