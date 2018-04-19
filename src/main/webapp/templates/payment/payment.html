@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Payment</title>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js" defer></script>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -28,7 +30,7 @@
 <body class="lots-main-page-body">
 <div class="container">
     <div class="lots-title text-center mt-5">
-        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
+        <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
     <div class="payment-methods text-center">
         <div class="lots-justify-content-around">
@@ -36,7 +38,7 @@
                 <div class="lots-top_divider"></div>
                 <div class="lots-productcard-content">
                     <button id="pay-button-creditcard" type="button" class="lots-productcard-button">
-                        <i class="fas fa-credit-card fa-7x"></i>
+                        <i class="fas fa-credit-card fa-7x font-payment-methods"></i>
                     </button>
                 </div>
                 <div class="lots-productcard_footer">
@@ -47,7 +49,7 @@
                 <div class="lots-top_divider"></div>
                 <div class="lots-productcard-content">
                     <button id="pay-button-paypal" type="button" class="lots-productcard-button">
-                        <i class="fab fa-cc-paypal fa-7x"></i></button>
+                        <i class="fab fa-cc-paypal fa-7x font-payment-methods"></i></button>
                 </div>
                 <div class="lots-productcard_footer">
                     <div class="lots-bot_divider"></div>
@@ -79,7 +81,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="submit" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn">
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>
@@ -130,15 +132,17 @@
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="submit" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn">
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>
         </div>
     </form>
     <!--Alert for success paying-->
-    <div id="pay-success" class="alert alert-success" role="alert" hidden>
-        Thank you! Your payment was processed successfully.
+    <div class="lots-justify-content-around">
+        <div id="pay-success" class="alert lots-input-field lots-border-gold" role="alert" hidden>
+            Thank you! Your payment was processed successfully.
+        </div>
     </div>
 </div>
 

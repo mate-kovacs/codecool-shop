@@ -8,7 +8,10 @@
     <title>Codecool Shop</title>
 
     <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <!--fontawesome-->
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
@@ -42,7 +45,7 @@
 <body class="lots-main-page-body">
 <div class="container-fluid">
     <div class="lots-title text-center mt-5">
-        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
+        <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
     <div id="shoppingCart" class="container-fluid lots-justify-content-around">
         <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png"></a>
@@ -54,7 +57,6 @@
 </div>
 
 <div class="container">
-
     <div id="filter">
         <form action="/">
             <label for="select-category">
