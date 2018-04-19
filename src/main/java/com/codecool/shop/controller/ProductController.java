@@ -78,11 +78,12 @@ public class ProductController extends HttpServlet {
             for (Product product : products) {
 
                 json.put("Product" + numberOfProducts, new JSONObject()
-                    .put("title", product.getName())
-                    .put("description", product.getDescription())
-                    .put("id", product.getId())
-                    .put("price", product.getPrice()));
-                numberOfProducts ++;
+                        .put("title", product.getName())
+                        .put("description", product.getDescription())
+                        .put("id", product.getId())
+                        .put("price", product.getPrice())
+                        .put("supplier", product.getSupplier().getName()));
+                numberOfProducts++;
             }
 
             resp.setContentType("application/json");
