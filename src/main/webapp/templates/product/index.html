@@ -11,20 +11,22 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!--fontawesome-->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" defer/>
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" defer/>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous" defer></script>
 
     <script src="/static/js/add_item_to_cart.js"></script>
 
@@ -35,19 +37,12 @@
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
-    <script type="text/javascript">
-
-    </script>
 </head>
 
-<body>
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-    <div id="shoppingCart" class="container-fluid">
-        <span id="numberOfItems" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'" th:text="${number_of_items} + ' items'"></span>
-        <span id="totalPrice" class="card bg-success" style="font-size: 22px; font-family: 'DejaVu Sans Condensed'" th:text="${total_price} + ' USD'"></span>
-        <a id="goToCart" class="btn btn-success cart-anchor" href="/shoppingcart"><i class="fas fa-shopping-cart" style="font-size: 15px"></i><span style="font-family: 'Abyssinica SIL';font-size: 15px"> Pay</span></a>
+<body class="lots-main-page-body">
+<div class="container-fluid">
+    <div class="lots-title text-center mt-5">
+        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
     </div>
 </div>
 
