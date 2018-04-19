@@ -21,11 +21,12 @@ let shoppingCartManager = {
             data: { id: id, process: process},
             success: function(result){
                 let quantityField = parentNode.getElementsByClassName("quantity_field")[0];
-                if (parseInt(result) > 0) {
-                    quantityField.textContent = result;
+                if (parseInt(result.numOfItems) > 0) {
+                    quantityField.textContent = result.numOfItems;
                 } else {
                     document.getElementById("productItem_" + id).remove();
                 }
+                document.getElementById("total_price_field").textContent = result.total;
             }
         })
     },

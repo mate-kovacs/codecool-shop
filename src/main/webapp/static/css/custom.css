@@ -66,7 +66,7 @@ body {
     margin: 0 0 11px;
 }
 
-.lots-productcard {
+.lots-productcard, .lots-shoppingcart_product {
     background-color: #21292e;
     border-color: #d2d3ca;
     border-style: solid;
@@ -81,6 +81,10 @@ body {
     flex-shrink: 0;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.lots-shoppingcart_product {
+    margin-bottom: 20px;
 }
 
 .lots-productcard-content {
@@ -121,6 +125,14 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.lots-justify-content-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
 
 .lots-supplier_text {
     font-family: 'IM Fell English', serif;
@@ -171,6 +183,15 @@ body {
     background-repeat: no-repeat;
 }
 
+.decrease_btn, .increase_btn {
+   font-size: 2rem;
+    margin: 0 30px;
+}
+
+.quantity_field {
+    font-size: 2.5rem;
+}
+
 .lots_add-btn {
     position: absolute;
     bottom: -30px;
@@ -187,6 +208,7 @@ body {
     height: 90px;
     width: 90px;
     padding: 5px;
+    cursor: pointer;
 }
 
 
@@ -198,6 +220,8 @@ body {
     width: 70%;
     height: auto;
     margin-bottom: 20px;
+    margin-top: 2%;
+    cursor: pointer;
 }
 
 .lots-subtitle {
@@ -240,19 +264,25 @@ body {
     outline: 0 none;
 }
 
-.go-to-pay-btn {
+
+
+.go-to-pay-btn, .go-to-checkout-btn {
     border: solid 0px;
     background: transparent;
     margin-top: 15%;
     outline: 0 !important;
 }
 
-.go-to-pay-btn:active .go-to-pay-btn:focus .lots-productcard-button:active .lots-productcard-button:focus {
+.go-to-pay-btn:active .go-to-pay-btn:focus .lots-productcard-button:active .lots-productcard-button:focus, .go-to-checkout-btn:active, .go-to-checkout-btn:focus{
     border: none;
     outline: 0 !important;
 }
 
-.go-to-pay {
+.go-to-checkout-btn {
+    display: block;
+}
+
+.go-to-pay, .go-to-chekout {
     background-color: #21292e;
     border-radius: 50%;
     width: 100px;
@@ -281,4 +311,24 @@ body {
     max-height:170px;
     width: auto;
     height: auto;
+    cursor: pointer;
+}
+
+#shoppingcart_field {
+    margin-top: 20px;
+}
+
+.lots-shopcart_total_price_wrapper {
+    padding-top: 50px;
+    margin-right: 50px;
+}
+
+.lots-border-gold {
+    border: solid 3px #247b4b;
+    width: 40%;
+    text-align: center;
+}
+
+.font-payment-methods:hover {
+    cursor: pointer;
 }
