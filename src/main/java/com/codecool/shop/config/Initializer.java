@@ -56,7 +56,6 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Guitar Hero", 10, "USD", "Bence will accompany you on guitar in a performace for 45 minutes", specialSkills, mentorBence));
         productDataStore.add(new Product("Departure from the Cave", 10, "USD", "Zozi will enlighten you in a random philosophical topic", specialSkills, mentorZozi));
         productDataStore.add(new Product("Ring the Bell", 10, "USD", "Rudi will be your personal kettle bell trainer for an hour", specialSkills, mentorRudi));
-        productDataStore.add(new Product("Ring the Bell", 10, "USD", "Rudi will be your personal kettle bell trainer for an hour", specialSkills, mentorRudi));
         productDataStore.add(new Product("By Design", 10, "USD", "Dani will brag about one of his creations for an hour", specialSkills, mentorDani));
         productDataStore.add(new Product("Pass the Ball", 10, "USD", "Laci will play any kind of ball game with you for an hour, mocking your miserable skills", specialSkills, mentorLaci));
     }
