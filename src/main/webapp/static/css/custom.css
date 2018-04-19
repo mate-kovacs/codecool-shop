@@ -84,7 +84,7 @@ body {
 }
 
 .lots-productcard-content {
-    height: 350px;
+    height: 280px;
 }
 
 .lots-productcard:hover {
@@ -197,6 +197,7 @@ body {
 .lots-title-image {
     width: 70%;
     height: auto;
+    margin-bottom: 20px;
 }
 
 .lots-subtitle {
