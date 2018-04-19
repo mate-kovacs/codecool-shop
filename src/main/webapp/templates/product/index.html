@@ -45,7 +45,7 @@
         <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
     </div>
     <div id="shoppingCart" class="container-fluid lots-justify-content-around">
-        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img src="/static/img/Silver_Chest.png"></a>
+        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png"></a>
     </div>
     <div class="container-fluid lots-justify-content-around">
         <p id="numberOfItems" style="font-size: 22px" th:text="${number_of_items} + ' items'"></p>
@@ -53,9 +53,7 @@
     </div>
 </div>
 
-
 <div class="container">
-
     <div id="filter">
         <form action="/">
             <label for="select-category">
