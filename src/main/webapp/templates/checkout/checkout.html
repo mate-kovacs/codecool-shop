@@ -38,7 +38,7 @@
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputName">Name</label>
                 <input type="text" class="form-control lots-input-field" id="inputName" placeholder="Name"
-                       name="inputName" required pattern="^[a-zA-Záéíóöőúüű]+(([',. -][a-zA-Záéíóöőúüű ])?[a-zA-Záéíóöőúüű]*)*$*)*$">
+                       name="inputName" required pattern="^[a-zA-Z\X]+(([',. -][a-zA-Z\X ])?[a-zA-Z\X]*)*$*)*$">
             </div>
             <div class="form-group col-md-4">
                 <label class="lots-input-label" for="inputEmail">Email</label>
@@ -65,7 +65,7 @@
                        placeholder="1234 Main St"
                        name="inputShipAddress"
                        required
-                       pattern="((\w)+([\.\,\-\s\:\/\'\_])*)+">
+                       pattern="((\w)+([.,\-\s:/'_])*)+">
             </div>
         </div>
         <div class="form-row justify-content-end">
@@ -113,7 +113,7 @@
                            placeholder="1234 Main St"
                            name="inputBillAddress"
                            required
-                           pattern="((\w)+([\.\,\-\s\:\/\'\_])*)+">
+                           pattern="((\w)+([.,\-\s:/'_])*)+">
                 </div>
             </div>
             <div class="form-row justify-content-end">
