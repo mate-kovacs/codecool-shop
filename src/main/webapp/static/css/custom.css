@@ -60,3 +60,12 @@
 {
     margin: 0 0 11px;
 }
+
+.lots-main-page-body {
+    background: url("/static/img/background_image.jpg") no-repeat fixed center;
+}
+
+.lots-title-image {
+    width: 70%;
+    height: auto;
+}
