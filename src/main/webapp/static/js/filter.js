@@ -50,9 +50,9 @@ function itemHtmlText(id, title, description, price){
             "                            <p class=\"lead\">" + price + "</p>\n" +
             "                        </div>\n" +
             "                        <div class=\"col-xs-12 col-md-6\">\n" +
-            "                                <button class=\"btn btn-success addButton\" data-id=\"" + id + "\">\n" +
+            "                                <a href=\"javascript:void(0);\" class=\"btn btn-success add-to-cart\" data-id=\"" + id + "\">\n" +
             "                                    Add to cart\n" +
-            "                                </button>\n" +
+            "                                </a>\n" +
             "                        </div>\n" +
             "                    </div>\n" +
             "                </div>\n" +
