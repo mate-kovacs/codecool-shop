@@ -56,14 +56,14 @@
             </label>
             <select name="select_category" id="select-category">
                 <option value="All" selected>All</option>
-                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}"></option>
+                <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}" th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
             </select>
             <label for="select-supplier">
                 Supplier
             </label>
             <select name="select_supplier" id="select-supplier">
                 <option value="All" selected>All</option>
-                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"></option>
+                <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}" th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
             </select>
             <button type="button" formmethod="get" id="filter-button">
                 Filter
