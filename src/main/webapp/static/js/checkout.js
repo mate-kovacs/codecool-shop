@@ -1,6 +1,7 @@
 checkout = {
     init: function () {
         checkout.addEventListenerToCheckBoxSameAddress();
+        checkout.uncheckCheckbox();
     },
 
     addEventListenerToCheckBoxSameAddress: function () {
@@ -12,6 +13,11 @@ checkout = {
                 document.getElementById("billAddressForm").style.display = "block";
             }
         })
+    },
+
+    uncheckCheckbox: function () {
+        let checkbox = document.getElementById("sameAddressCheck");
+        checkbox.checked = false;
     }
 
 };
