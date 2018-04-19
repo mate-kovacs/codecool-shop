@@ -18,84 +18,106 @@
     <script src="/static/js/checkout.js" defer></script>
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet"
+          defer>
     <title>Checkout</title>
 </head>
-<body>
-<div class="container">
-    <form action="/checkout" method="post">
+<body class="lots-main-page-body">
+<div class="container lots-font-color-white">
+    <div class="lots-title text-center mt-5">
+        <img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store">
+    </div>
+    <form action="/checkout" method="post" class="lots-daughter-font">
         <div class="form-row">
             <div class="form-group">
-                <h4 class="display-4">Checkout proccess</h4>
+                <h2 class="lots-subtitle">Checkout</h2>
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row justify-content-end">
             <div class="form-group col-md-4">
-                <label for="inputName">Name</label>
-                <input type="name" class="form-control" id="inputName" placeholder="Name" name="inputName">
+                <label class="lots-input-label" for="inputName">Name</label>
+                <input type="name" class="form-control lots-input-field" id="inputName" placeholder="Name"
+                       name="inputName">
             </div>
             <div class="form-group col-md-4">
-                <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="inputEmail">
+                <label class="lots-input-label" for="inputEmail">Email</label>
+                <input type="email" class="form-control lots-input-field" id="inputEmail" placeholder="Email"
+                       name="inputEmail">
             </div>
-            <div class="form-group col-md-4">
-                <label for="inputPhoneNumber">Phone number</label>
-                <input type="phoneNumber" class="form-control" id="inputPhoneNumber" placeholder="Phone number" name="inputPhoneNumber">
+            <div class="form-group col-md-3">
+                <label class="lots-input-label" for="inputPhoneNumber">Phone number</label>
+                <input type="phoneNumber" class="form-control lots-input-field" id="inputPhoneNumber"
+                       placeholder="Phone number"
+                       name="inputPhoneNumber">
             </div>
         </div>
         <div class="form-group">
-            <h5>Shipping Address</h5>
+            <h5 class="lots-form-title ml-4">Shipping Address</h5>
         </div>
-        <div class="form-group">
-            <label for="inputShipAddress">Address</label>
-            <input type="text" class="form-control" id="inputShipAddress" placeholder="1234 Main St" name="inputShipAddress">
+        <div class="row justify-content-end">
+            <div class="col-11">
+                <label class="lots-input-label" for="inputShipAddress">Address</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipAddress"
+                       placeholder="1234 Main St"
+                       name="inputShipAddress">
+            </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputShipCity">City</label>
-                <input type="text" class="form-control" id="inputShipCity" name="inputShipCity">
+        <div class="form-row justify-content-end">
+            <div class="form-group col-md-5">
+                <label class="lots-input-label" for="inputShipCity">City</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipCity" name="inputShipCity">
             </div>
             <div class="form-group col-md-4">
-                <label for="inputShipCountry">Country</label>
-                <input type="text" class="form-control" id="inputShipCountry" name="inputShipCountry">
+                <label class="lots-input-label" for="inputShipCountry">Country</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipCountry" name="inputShipCountry">
             </div>
             <div class="form-group col-md-2">
-                <label for="inputShipZip">Zip</label>
-                <input type="text" class="form-control" id="inputShipZip" name="inputShipZip">
+                <label class="lots-input-label" for="inputShipZip">Zip</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipZip" name="inputShipZip">
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="sameAddressCheck" name="sameAddressCheck">
-                <label class="form-check-label" for="sameAddressCheck">
-                    Billing address same as shipping
-                </label>
+        <div class="row justify-content-end">
+            <div class="form-group col-11">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="sameAddressCheck" name="sameAddressCheck">
+                    <label class="form-check-label lots-input-label" for="sameAddressCheck">
+                        Billing address same as shipping
+                    </label>
+                </div>
             </div>
         </div>
         <!--Billing address-->
         <div id="billAddressForm">
             <div class="form-group">
-                <h5>Billing Address</h5>
+                <h5 class="lots-form-title ml-4">Billing Address</h5>
             </div>
-            <div class="form-group">
-                <label for="inputBillAddress">Address</label>
-                <input type="text" class="form-control" id="inputBillAddress" placeholder="1234 Main St" name="inputBillAddress">
+            <div class="row justify-content-end">
+                <div class="form-group col-11">
+                    <label class="lots-input-label" for="inputBillAddress">Address</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillAddress"
+                           placeholder="1234 Main St"
+                           name="inputBillAddress">
+                </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputBillCity">City</label>
-                    <input type="text" class="form-control" id="inputBillCity" name="inputBillCity">
+            <div class="form-row justify-content-end">
+                <div class="form-group col-md-5">
+                    <label class="lots-input-label" for="inputBillCity">City</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillCity" name="inputBillCity">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputBillCountry">Country</label>
-                    <input type="text" class="form-control" id="inputBillCountry" name="inputBillCountry">
+                    <label class="lots-input-label" for="inputBillCountry">Country</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillCountry"
+                           name="inputBillCountry">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="inputBillZip">Zip</label>
-                    <input type="text" class="form-control" id="inputBillZip" name="inputBillZip">
+                    <label class="lots-input-label" for="inputBillZip">Zip</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillZip" name="inputBillZip">
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Go to pay</button>
+        <div class="row justify-content-end">
+            <button type="submit" class="btn btn-primary go-to-pay-btn">Go to pay</button>
+        </div>
     </form>
 </div>
 </body>
