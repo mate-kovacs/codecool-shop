@@ -48,7 +48,7 @@
         <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
     <div id="shoppingCart" class="container-fluid lots-justify-content-around" style="vertical-align:bottom">
-        <div id="filter" style="position: relative; top: 20px">
+        <div id="filter" style="position: relative; top: 30px; right:20px">
             <form action="/" class="form-inline">
                 <label for="select-category">
                     Category
@@ -70,9 +70,9 @@
             </form>
         </div>
 
-        <p id="numberOfItems" style="font-size: 22px; position: relative; top: 20px; width: 30px;" th:text="${number_of_items} + ' items'" ></p>
+        <p id="numberOfItems" style="font-size: 22px; position: relative; top: 20px; width: 40px;" th:text="${number_of_items} + ' items'" ></p>
         <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image" src="/static/img/Silver_Chest.png"></a>
-        <p id="totalPrice" style="font-size: 22px;position: relative; top: 20px; left:-70px" th:text="${total_price}"></p>
+        <p id="totalPrice" style="font-size: 22px;position: relative; top: 20px; left:-70px; width:40px" th:text="${total_price}"></p>
     </div>
     <div class="container-fluid">
 
