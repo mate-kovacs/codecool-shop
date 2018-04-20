@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+import org.json.JSONObject;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.model.ShoppingCart;
 import com.codecool.shop.model.User;
@@ -31,7 +32,7 @@ public class ShoppingCartController extends HttpServlet{
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
-        context.setVariable("shoppingcart", shoppingCart.getContent());
+        context.setVariable("shoppingcart", shoppingCart);
 
         engine.process("shoppingcart/shoppingcart.html", context, response.getWriter());
     }
@@ -54,7 +55,14 @@ public class ShoppingCartController extends HttpServlet{
             shoppingCart.removeItem(id);;
         }
 
-        response.getWriter().print(shoppingCart.getNumberOfItemById(id));
+        JSONObject json = new JSONObject();
+        json.put("numOfItems", shoppingCart.getNumberOfItemById(id));
+        json.put("total", shoppingCart.sumCart());
+
+        response.setContentType("application/json");
+        response.getWriter().print(json);
+
+        //response.getWriter().print(shoppingCart.getNumberOfItemById(id));
 
     }
 

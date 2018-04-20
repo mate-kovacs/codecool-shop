@@ -49,6 +49,14 @@
     <div class="lots-title text-center mt-5">
         <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
+    <div id="shoppingCart" class="container-fluid lots-justify-content-around">
+        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image"
+                                                                       src="/static/img/Silver_Chest.png"></a>
+    </div>
+    <div class="container-fluid lots-justify-content-around">
+        <p id="numberOfItems" style="font-size: 22px" th:text="${number_of_items} + ' items'"></p>
+        <p id="totalPrice" style="font-size: 22px" th:text="${total_price}"></p>
+    </div>
 </div>
 
 <div class="container">
@@ -87,6 +95,7 @@
             </div>
         </div>
     </div>
+
     <div id="products" class="lots-justify-content-around">
 
         <div class="lots-productcard" th:each="prod,iterStat : ${products}" th:id="'product_' + ${prod.id}">
