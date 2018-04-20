@@ -76,17 +76,23 @@
                 <input type="email" class="form-control lots-input-field" id="exampleInputEmail1"
                        aria-describedby="emailHelp"
                        placeholder="Enter email" required>
+                <small id="email-error" class="form-text text-muted  lots-font-color-white" style="font-weight: bold" hidden>
+                    Invalid email address!
+                </small>
                 <small id="emailHelp" class="form-text text-muted lots-font-color-white">We'll never share your email
                     with anyone else.
                 </small>
                 <label class="lots-input-label" for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control lots-input-field" id="exampleInputPassword1"
                        placeholder="Password" required>
+                <small id="password-error" class="form-text text-muted lots-font-color-white" style="font-weight: bold" hidden>
+                    Invalid password!
+                </small>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="button" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn"data-payment-method="paypal" >
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>
@@ -107,6 +113,9 @@
                        autocomplete="cc-name"
                        aria-required="true" aria-invalid="false" aria-describedby="cc-name-error"
                        pattern="^(?:\p{L}|[_\- '])+$">
+                <small id="name-error" class="form-text text-muted lots-font-color-white" style="font-weight: bold" hidden>
+                    Invalid name format!
+                </small>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -114,6 +123,9 @@
                 <label for="cc-number" class="control-label mb-1 lots-input-label">Card number</label>
                 <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number lots-input-field"
                        required pattern="(-*([0-9]{4})){4}" MAXLENGTH="19">
+                <small id="cc-number-error" class="form-text text-muted lots-font-color-white" style="font-weight: bold" hidden>
+                    Enter a valid, 16 digit credit card number!
+                </small>
                 <span class="invalid-feedback">Enter a valid 16 digit card number</span>
             </div>
         </div>
@@ -124,7 +136,9 @@
                        placeholder="MM / YY"
                        autocomplete="cc-exp"
                        pattern="(((([0])([0-9]))|(([1])([0-2])))/(([1][9])|([2-9][0-9])))|(((([0])([4-9]))|(([1])([0-2])))/(([1][8])))">
-                <span class="invalid-feedback">Enter the expiration date</span>
+                <small id="cc-exp-error" class="form-text text-muted lots-font-color-white" style="font-weight: bold" hidden>
+                    Enter the expiration date!
+                </small>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -132,12 +146,15 @@
                 <label class="lots-input-label" for="cc-security-code">Security Code</label>
                 <input type="password" class="form-control lots-input-field" id="cc-security-code" placeholder="CCV"
                        required
-                       pattern="([0-9]{3})">
+                       pattern="([0-9]{3})" maxlength="3">
+                <small id="cc-cvv-error" class="form-text text-muted lots-font-color-white" style="font-weight: bold" hidden>
+                    Invalid CVV code!
+                </small>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="go-to-pay text-center">
-                <button type="button" class="go-to-pay-btn">
+                <button type="button" class="go-to-pay-btn" data-payment-method="cc">
                     <img src="/static/img/pay.png" alt="" class="lots-pay-png">
                 </button>
             </div>

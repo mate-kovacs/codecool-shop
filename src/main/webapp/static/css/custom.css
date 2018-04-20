@@ -238,6 +238,10 @@ body {
     color: #eaa411;
 }
 
+.lots-font-color-red {
+    color: #ff0000;
+}
+
 .lots-daughter-font {
     font-family: 'Architects Daughter', cursive;
 }
