@@ -53,9 +53,9 @@
 
 <div class="container">
     <div class="text-center">
-        <div id="shoppingCart"
-             style="vertical-align:bottom; display: inline; margin: 0 auto">
+        <div id="filterField" style="vertical-align:bottom; display: inline; margin: 0 auto">
             <div id="filter" style="display: inline; vertical-align: bottom; margin: 0 auto">
+
                 <form action="/" class="form-inline" style="display: inline; vertical-align: bottom">
                     <label for="select-category">
                         Category
@@ -74,19 +74,17 @@
                         <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"
                                 th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
                     </select>
-                    <button type="button" formmethod="get" id="filter-button" class="btn"
-                            style="margin-left:10px">
-                        Filter
-                    </button>
+                    <button type="button" formmethod="get" id="filter-button" class="btn" style="margin-left:10px">Filter</button>
                 </form>
             </div>
-
-            <p id="numberOfItems" style="font-size: 22px;display: inline" th:text="${number_of_items} + ' items'"
-               class="d-inline-block"></p>
-            <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image"
-                                                                           src="/static/img/Silver_Chest.png"
-                                                                           style="display: inline;justify-content: center"></a>
-            <p id="totalPrice" style="font-size: 22px;display: inline" th:text="${total_price}"></p>
+            <div id="shoppingCart">
+                <p id="numberOfItems" style="font-size: 22px;display: inline" th:text="${number_of_items} + ' items'"
+                   class="d-inline-block"></p>
+                <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image"
+                                                                               src="/static/img/Silver_Chest.png"
+                                                                               style="display: inline;justify-content: center"></a>
+                <p id="totalPrice" style="font-size: 22px;display: inline" th:text="${total_price}"></p>
+            </div>
         </div>
     </div>
     <div id="products" class="lots-justify-content-around">

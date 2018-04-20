@@ -16,7 +16,7 @@ function addEventListenerToButtons() {
                     let priceSum = response.priceSum;
                     let numberOfItems = response.numberOfItems;
                     $('#numberOfItems').html(numberOfItems + " items");
-                    $('#totalPrice').html(priceSum + " USD");
+                    $('#totalPrice').html(priceSum);
                 }
             });
             // button.preventDefault();

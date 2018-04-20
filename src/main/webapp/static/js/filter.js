@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     addFilterListeners();
 });
 
@@ -20,12 +20,10 @@ function addFilterListeners() {
             type: "GET",
             success: function (response) {
                 let htmlString = '';
-                $.each(response, function(index, value) {
+                $.each(response, function (index, value) {
                     htmlString += itemHtmlText(value.id, value.title, value.description, value.price, value.supplier);
                 });
-                addFlyEventListener();
                 let productList = document.getElementById("products");
-                let categoryTitle = document.getElementById("category-title");
                 productList.innerHTML = htmlString;
                 addFlyEventListener();
                 addEventListenerToButtons();
@@ -45,20 +43,22 @@ function changeURL(category, supplier) {
 }
 
 
-function itemHtmlText(id, title, description, price, supplier){
+function itemHtmlText(id, title, description, price, supplier) {
 
-    return "<div class=\"lots-productcard\" id=\"product_"+id+"\">\n" +
+    price = price.split(" ")[0];
+
+    return "<div class=\"lots-productcard\" id=\"product_" + id + "\">\n" +
         "            <div class=\"lots-top_divider\"></div>\n" +
-        "            <h4 class=\"lots-supplier_text\">"+supplier+"</h4>\n" +
-        "            <h4 class=\"lots-productname_text\">"+title+"</h4>\n" +
-        "            <p class=\"lots-productdesc_text\">"+description+"</p>\n" +
+        "            <h4 class=\"lots-supplier_text\">" + supplier + "</h4>\n" +
+        "            <h4 class=\"lots-productname_text\">" + title + "</h4>\n" +
+        "            <p class=\"lots-productdesc_text\">" + description + "</p>\n" +
         "            <div class=\"lots-bot_divider\"></div>\n" +
         "            <div class=\"lots-productcard_footer\">\n" +
         "                <div class=\"lots-pricewrapper\">\n" +
-        "                    <div class=\"lots_price\">"+price+"</div>\n" +
+        "                    <div class=\"lots_price\">" + price + "</div>\n" +
         "                    <div class=\"lots-currency-icon\"></div>\n" +
         "                </div>\n" +
         "            </div>\n" +
-        "            <div class=\"lots_add-btn add-to-cart\" data-id=\""+id+"\"></div>\n" +
+        "            <div class=\"lots_add-btn add-to-cart\" data-id=\"" + id + "\"></div>\n" +
         "        </div>"
 }
