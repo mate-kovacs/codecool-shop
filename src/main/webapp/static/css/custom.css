@@ -280,6 +280,7 @@ body {
 
 .go-to-checkout-btn {
     display: block;
+    padding: 1px 6px;
 }
 
 .go-to-pay, .go-to-chekout {
@@ -331,4 +332,18 @@ body {
 
 .font-payment-methods:hover {
     cursor: pointer;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+#filter-button {
+    color: black;
+}
+
+#shoppingCart {
+    margin: 20px 0;
 }
