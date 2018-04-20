@@ -74,7 +74,7 @@
                         <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"
                                 th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
                     </select>
-                    <button type="button" formmethod="get" id="filter-button" class="btn btn-warning"
+                    <button type="button" formmethod="get" id="filter-button" class="btn"
                             style="margin-left:10px">
                         Filter
                     </button>

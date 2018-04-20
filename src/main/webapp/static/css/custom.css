@@ -150,10 +150,6 @@ body {
     justify-content: center;
 }
 
-.lots-pricewrapper {
-
-}
-
 .lots_price {
     display: inline-block;
     font-size: 2em;
@@ -301,4 +297,18 @@ body {
 
 .font-payment-methods:hover {
     cursor: pointer;
+}
+
+#filter-button {
+    background-color: #21292e;
+    border: solid 2px #d2d3ca;
+}
+
+#filter-button:hover {
+    color: #d2d3ca;
+    border: solid 2px #eaa411;
+}
+
+#products {
+    margin-top: 4%;
 }
