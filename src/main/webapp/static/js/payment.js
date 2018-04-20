@@ -94,7 +94,45 @@ payment = {
     },
 
     checkCCFields: function () {
-        console.log("cc");
+        let name = document.getElementById("cc-name").value;
+        if (!name) {
+            document.getElementById("name-error").removeAttribute("hidden");
+            return false;
+        } else {
+            document.getElementById("name-error").setAttribute("hidden", true);
+        }
+
+        let cardNumber = document.getElementById("cc-number").value;
+        if (!cardNumber.match(/(-*([0-9]{4})){4}/g)) {
+            document.getElementById("cc-number-error").removeAttribute("hidden");
+            return false;
+        } else {
+            document.getElementById("cc-number-error").setAttribute("hidden", true);
+        }
+
+        let expDate = document.getElementById("cc-exp").value;
+        let month = parseInt(expDate.split("/")[0]);
+        let year = parseInt(expDate.split("/")[1]);
+
+        let today = new Date();
+        let mm = parseInt(today.getMonth()) + 1;
+        let yy = parseInt(today.getFullYear()) -2000;
+
+        if ( !((mm <= month && yy === year && month <= 12) || (yy < year && month <= 12)) ) {
+            document.getElementById("cc-exp-error").removeAttribute("hidden");
+            return false;
+        } else {
+            document.getElementById("cc-exp-error").setAttribute("hidden", true);
+        }
+
+        let cvv = document.getElementById("cc-security-code").value;
+        if (!cvv.match(/([0-9]{3})/g)) {
+            document.getElementById("cc-cvv-error").removeAttribute("hidden");
+            return false;
+        } else {
+            document.getElementById("cc-cvv-error").setAttribute("hidden", true);
+        }
+
         return true;
     }
 };
