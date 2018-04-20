@@ -163,7 +163,7 @@ body {
 }
 
 .lots-pricewrapper {
-
+ margin: 0 20px;
 }
 
 .lots_price {
@@ -347,3 +347,13 @@ body {
 #shoppingCart {
     margin: 20px 0;
 }
+
+.lots-total_price {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.lots-item_number_wrapper {
+    margin: 0 20px;
+}
+

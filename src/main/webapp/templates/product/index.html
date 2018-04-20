@@ -45,73 +45,72 @@
 </head>
 
 <body class="lots-main-page-body">
+
 <div class="container-fluid">
     <div class="lots-title text-center mt-5">
         <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
     </div>
-    <div id="shoppingCart" class="container-fluid lots-justify-content-around">
-        <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image"
-                                                                       src="/static/img/Silver_Chest.png"></a>
-    </div>
-    <div class="container-fluid lots-justify-content-around">
-        <p id="numberOfItems" style="font-size: 22px" th:text="${number_of_items} + ' items'"></p>
-        <p id="totalPrice" style="font-size: 22px" th:text="${total_price}"></p>
-    </div>
-</div>
 
-<div class="container">
-    <div class="text-center">
-        <div id="filterField" style="vertical-align:bottom; display: inline; margin: 0 auto">
-            <div id="filter" style="display: inline; vertical-align: bottom; margin: 0 auto">
+    <div class="container">
 
-                <form action="/" class="form-inline" style="display: inline; vertical-align: bottom">
-                    <label for="select-category">
-                        Category
-                    </label>
-                    <select name="select_category" id="select-category" class="form-control lots-filter-input"
-                            style="margin-right:10px">
-                        <option value="All" selected>All</option>
-                        <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}"
-                                th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
-                    </select>
-                    <label for="select-supplier">
-                        Supplier
-                    </label>
-                    <select name="select_supplier" id="select-supplier" class="form-control lots-filter-input">
-                        <option value="All" selected>All</option>
-                        <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"
-                                th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
-                    </select>
-                    <button type="button" formmethod="get" id="filter-button" class="btn" style="margin-left:10px">Filter</button>
-                </form>
-            </div>
-            <div id="shoppingCart">
-                <p id="numberOfItems" style="font-size: 22px;display: inline" th:text="${number_of_items} + ' items'"
-                   class="d-inline-block"></p>
-                <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image"
-                                                                               src="/static/img/Silver_Chest.png"
-                                                                               style="display: inline;justify-content: center"></a>
-                <p id="totalPrice" style="font-size: 22px;display: inline" th:text="${total_price}"></p>
-            </div>
-        </div>
-    </div>
+        <div class="text-center">
+            <div id="filterField" style="vertical-align:bottom; display: inline; margin: 0 auto">
+                <div id="filter" style="display: inline; vertical-align: bottom; margin: 0 auto">
 
-    <div id="products" class="lots-justify-content-around">
-
-        <div class="lots-productcard" th:each="prod,iterStat : ${products}" th:id="'product_' + ${prod.id}">
-            <div class="lots-top_divider"></div>
-            <h4 class="lots-supplier_text" th:text="${prod.supplier.getName()}">Supplier name</h4>
-            <h4 class="lots-productname_text" th:text="${prod.name}">Product name</h4>
-            <p class="lots-productdesc_text" th:text="${prod.description}">Product description... </p>
-            <div class="lots-bot_divider"></div>
-            <div class="lots-productcard_footer">
-                <div class="lots-pricewrapper">
-                    <div class="lots_price" th:text="${prod.getDefaultPrice()}">100</div>
-                    <div class="lots-currency-icon"></div>
+                    <form action="/" class="form-inline" style="display: inline; vertical-align: bottom">
+                        <label for="select-category">
+                            Category
+                        </label>
+                        <select name="select_category" id="select-category" class="form-control lots-filter-input"
+                                style="margin-right:10px">
+                            <option value="All" selected>All</option>
+                            <option th:each="cat,itrStat : ${category_list}" th:text="${cat.getName()}"
+                                    th:value="${cat.getName()}" th:selected="${cat.getName()==category.getName()}"></option>
+                        </select>
+                        <label for="select-supplier">
+                            Supplier
+                        </label>
+                        <select name="select_supplier" id="select-supplier" class="form-control lots-filter-input">
+                            <option value="All" selected>All</option>
+                            <option th:each="sup,itrStat : ${supplier_list}" th:text="${sup.getName()}"
+                                    th:value="${sup.getName()}" th:selected="${sup.getName()==supplier.getName()}"></option>
+                        </select>
+                        <button type="button" formmethod="get" id="filter-button" class="btn" style="margin-left:10px">Filter</button>
+                    </form>
                 </div>
             </div>
-            <div class="lots_add-btn add-to-cart" th:data-id="${prod.id}"></div>
         </div>
+
+        <div id="shoppingCart" class="container-fluid lots-justify-content-center">
+            <a id="goToCart" class="cart-anchor" href="/shoppingcart"><img id="cart-image"
+                                                                           src="/static/img/Silver_Chest.png"></a>
+        </div>
+        <div class="lots-justify-content-center">
+            <div class="lots-item_number_wrapper" id="numberOfItems" style="font-size: 22px" th:text="${number_of_items} + ' items'"></div>
+            <div class="lots-pricewrapper">
+                <div class="lots-total_price" id="totalPrice" style="font-size: 22px" th:text="${total_price}"></div>
+                <div class="lots-currency-icon"></div>
+            </div>
+        </div>
+
+        <div id="products" class="lots-justify-content-around">
+
+            <div class="lots-productcard" th:each="prod,iterStat : ${products}" th:id="'product_' + ${prod.id}">
+                <div class="lots-top_divider"></div>
+                <h4 class="lots-supplier_text" th:text="${prod.supplier.getName()}">Supplier name</h4>
+                <h4 class="lots-productname_text" th:text="${prod.name}">Product name</h4>
+                <p class="lots-productdesc_text" th:text="${prod.description}">Product description... </p>
+                <div class="lots-bot_divider"></div>
+                <div class="lots-productcard_footer">
+                    <div class="lots-pricewrapper">
+                        <div class="lots_price" th:text="${prod.getDefaultPrice()}">100</div>
+                        <div class="lots-currency-icon"></div>
+                    </div>
+                </div>
+                <div class="lots_add-btn add-to-cart" th:data-id="${prod.id}"></div>
+            </div>
+        </div>
+
     </div>
 
 </div>
