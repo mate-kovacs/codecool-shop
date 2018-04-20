@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Checkout</title>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+            defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"
+            defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"
+            defer></script>
+    <!--Custom js-->
+    <script src="/static/js/checkout.js" defer></script>
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|IM+Fell+English:400,400i" rel="stylesheet">
+</head>
+<body class="lots-main-page-body">
+<div class="container lots-font-color-white">
+    <div class="lots-title text-center mt-5">
+        <a href="/"><img class="lots-title-image" src="/static/img/quest_store_title.png" alt="Quest Store"></a>
+    </div>
+    <form action="/checkout" method="post" class="lots-daughter-font">
+        <div class="form-row">
+            <div class="form-group">
+                <h2 class="lots-subtitle">
+                    <i class="far fa-list-alt lots-font-color-gold">
+                    </i> Checkout</h2>
+            </div>
+        </div>
+        <div class="form-row justify-content-end">
+            <div class="form-group col-md-4">
+                <label class="lots-input-label" for="inputName">Name</label>
+                <input type="text" class="form-control lots-input-field" id="inputName" placeholder="Name"
+                       name="inputName"
+                       required
+                       pattern="^(?:\p{L}|[_\- '.])+$">
+            </div>
+            <div class="form-group col-md-4">
+                <label class="lots-input-label" for="inputEmail">Email</label>
+                <input type="email" class="form-control lots-input-field" id="inputEmail" placeholder="Email"
+                       name="inputEmail"
+                       required>
+            </div>
+            <div class="form-group col-md-3">
+                <label class="lots-input-label" for="inputPhoneNumber">Phone number</label>
+                <input type="tel" class="form-control lots-input-field" id="inputPhoneNumber"
+                       placeholder="Phone number"
+                       name="inputPhoneNumber"
+                       required
+                       pattern="([0-9])+" minlength="7" maxlength="10">
+            </div>
+        </div>
+        <div class="form-group">
+            <h5 class="lots-form-title ml-4">Shipping Address</h5>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-11">
+                <label class="lots-input-label" for="inputShipAddress">Address</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipAddress"
+                       placeholder="1234 Main St"
+                       name="inputShipAddress"
+                       required
+                       pattern="^(?:\p{L}|[_\- .,/:0-9])+$">
+            </div>
+        </div>
+        <div class="form-row justify-content-end">
+            <div class="form-group col-md-5">
+                <label class="lots-input-label" for="inputShipCity">City</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipCity"
+                       name="inputShipCity"
+                       required
+                       pattern="^(?:\p{L}|[_\- ])+$">
+            </div>
+            <div class="form-group col-md-4">
+                <label class="lots-input-label" for="inputShipCountry">Country</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipCountry"
+                       name="inputShipCountry"
+                       required
+                       pattern="^(?:\p{L}|[_\- ])+$">
+            </div>
+            <div class="form-group col-md-2">
+                <label class="lots-input-label" for="inputShipZip">Zip</label>
+                <input type="text" class="form-control lots-input-field" id="inputShipZip"
+                       name="inputShipZip"
+                       required
+                       pattern="(([0-9])+([-])*)*" minlength="4" maxlength="10">
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="form-group col-11">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="sameAddressCheck" name="sameAddressCheck">
+                    <label class="form-check-label lots-input-label" for="sameAddressCheck">
+                        Billing address same as shipping
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!--Billing address-->
+        <div id="billAddressForm">
+            <div class="form-group">
+                <h5 class="lots-form-title ml-4">Billing Address</h5>
+            </div>
+            <div class="row justify-content-end">
+                <div class="form-group col-11">
+                    <label class="lots-input-label" for="inputBillAddress">Address</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillAddress"
+                           placeholder="1234 Main St"
+                           name="inputBillAddress"
+                           required
+                           pattern="^(?:\p{L}|[_\- .,/:0-9])+$">
+                </div>
+            </div>
+            <div class="form-row justify-content-end">
+                <div class="form-group col-md-5">
+                    <label class="lots-input-label" for="inputBillCity">City</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillCity"
+                           name="inputBillCity"
+                           required
+                           pattern="^(?:\p{L}|[_\- ])+$">
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="lots-input-label" for="inputBillCountry">Country</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillCountry"
+                           name="inputBillCountry"
+                           required
+                           pattern="^(?:\p{L}|[_\- ])+$">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="lots-input-label" for="inputBillZip">Zip</label>
+                    <input type="text" class="form-control lots-input-field" id="inputBillZip"
+                           name="inputBillZip"
+                           required
+                           pattern="(([0-9])+([-])*)*" minlength="4" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="go-to-pay text-center">
+                <button type="submit" class="go-to-pay-btn">
+                    <img src="/static/img/pay.png" alt="" class="lots-pay-png">
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

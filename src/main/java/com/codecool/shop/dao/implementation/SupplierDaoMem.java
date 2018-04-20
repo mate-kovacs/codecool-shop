@@ -1,6 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.Supplier;
 
 import java.util.ArrayList;
@@ -10,10 +11,12 @@ public class SupplierDaoMem implements SupplierDao {
 
     private List<Supplier> data = new ArrayList<>();
     private static SupplierDaoMem instance = null;
+    private Supplier defaultSupplier;
 
     /* A private Constructor prevents any other class from instantiating.
      */
     private SupplierDaoMem() {
+        defaultSupplier = new Supplier("All", "");
     }
 
     public static SupplierDaoMem getInstance() {
@@ -42,5 +45,34 @@ public class SupplierDaoMem implements SupplierDao {
     @Override
     public List<Supplier> getAll() {
         return data;
+    }
+
+    @Override
+    public Integer findIdByName(String name){
+        for ( Supplier supp : data){
+            if (name.equals(supp.getName())){
+                return supp.getId();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Supplier getDefaultSupplier(){
+        return defaultSupplier;
+    }
+
+    @Override
+    public List<Product> filterProducts(List<Product> products, Supplier supplier){
+        if (supplier.equals(defaultSupplier)) {
+            return products;
+        }
+        List<Product> temp = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getSupplier().equals(supplier)) {
+                temp.add(product);
+            }
+        }
+        return temp;
     }
 }

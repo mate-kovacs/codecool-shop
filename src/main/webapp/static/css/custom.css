@@ -1,3 +1,8 @@
+body {
+    color: #d2d3ca;
+    font-family: 'Architects Daughter', cursive;
+}
+
 .glyphicon {
     margin-right:5px;
 }
@@ -60,3 +65,300 @@
 {
     margin: 0 0 11px;
 }
+
+.lots-productcard, .lots-shoppingcart_product {
+    background-color: #21292e;
+    border-color: #d2d3ca;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 10px;
+    height: 400px;
+    width: 300px;
+    position: relative;
+    margin-bottom: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.lots-shoppingcart_product {
+    margin-bottom: 20px;
+}
+
+.lots-productcard-content {
+    height: 280px;
+}
+
+.lots-productcard:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 10px 10px 20px -1px rgba(0,0,0,0.56);
+}
+
+.lots-top_divider {
+    background-image: url("/static/img/text_divider_top.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+}
+
+.lots-bot_divider {
+    background-image: url("/static/img/text_divider_bottom.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lots-justify-content-around {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.lots-justify-content-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+
+.lots-supplier_text {
+    font-family: 'IM Fell English', serif;
+    font-size: 2.6em;
+    text-align: center;
+    margin-top: 10px;
+    height: 30px;
+}
+
+.lots-productname_text {
+    font-family: 'IM Fell English', serif;
+    color: #6d7792;
+    font-size: 2em;
+    -webkit-text-stroke: 0.2px black;
+    text-align: center;
+    height: 80px;
+}
+
+.lots-productdesc_text {
+    text-align: center;
+    height: 100px;
+    margin-bottom: 0;
+    font-size: 1.8rem;
+}
+
+.lots-productcard_footer {
+    display: flex;
+    justify-content: center;
+}
+
+.lots-pricewrapper {
+ margin: 0 20px;
+}
+
+.lots_price {
+    display: inline-block;
+    font-size: 2em;
+    vertical-align: top;
+}
+
+.lots-currency-icon {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin-top: -5px;
+    background-image: url(/static/img/coin.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.decrease_btn, .increase_btn {
+   font-size: 2rem;
+    margin: 0 30px;
+}
+
+.quantity_field {
+    font-size: 2.5rem;
+}
+
+.lots_add-btn {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    background-color: #21292e;
+    border-color: #d2d3ca;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 50%;
+    background-image: url(/static/img/chest.png);
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    height: 90px;
+    width: 90px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.lots-main-page-body {
+    background: url("/static/img/background_image.jpg") no-repeat fixed center;
+}
+
+.lots-title-image {
+    width: 70%;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 2%;
+    cursor: pointer;
+}
+
+.lots-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-size: 3rem;
+    margin-top: 2%;
+}
+
+.lots-font-color-white {
+    color: #d2d3ca !important;
+}
+
+.lots-font-color-gold {
+    color: #eaa411;
+}
+
+.lots-font-color-red {
+    color: #ff0000;
+}
+
+.lots-daughter-font {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.lots-input-label {
+    font-size: 1.4rem;
+}
+
+.lots-form-title {
+    font-size: 1.7rem;
+}
+
+.lots-input-field, .lots-input-field:focus {
+    color: #d2d3ca;
+    border-radius: 5px;
+    padding: .25rem 1rem .25rem 1rem; !important;
+    background-color: #21292e;
+    border: solid #d2d3ca 2.4px;
+}
+
+.lots-input-field:focus, .lots-input-field[type]:focus {
+    border-color: rgba(234, 167, 17, 0.8);
+    box-shadow: 0 1px 1px rgba(234, 164, 17, 0.075);
+    outline: 0 none;
+}
+
+
+
+.go-to-pay-btn, .go-to-checkout-btn {
+    border: solid 0px;
+    background: transparent;
+    margin-top: 15%;
+    outline: 0 !important;
+}
+
+.go-to-pay-btn:active .go-to-pay-btn:focus .lots-productcard-button:active .lots-productcard-button:focus, .go-to-checkout-btn:active, .go-to-checkout-btn:focus{
+    border: none;
+    outline: 0 !important;
+}
+
+.go-to-checkout-btn {
+    display: block;
+    padding: 1px 6px;
+}
+
+.go-to-pay, .go-to-chekout {
+    background-color: #21292e;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: solid #d2d3ca 2.4px;
+    margin-bottom: 50px;
+    margin-top: 2%;
+}
+
+.lots-pay-png {
+    width: 80%;
+    height: auto;
+}
+
+.lots-productcard-button {
+    outline: 0 !important;
+    background: transparent;
+    border: none;
+    color: #d2d3ca;
+    margin-top: 25%;
+}
+
+#cart-image {
+    display: block;
+    max-width:200px;
+    max-height:170px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+#shoppingcart_field {
+    margin-top: 20px;
+}
+
+.lots-shopcart_total_price_wrapper {
+    padding-top: 50px;
+    margin-right: 50px;
+}
+
+.lots-border-gold {
+    border: solid 3px #247b4b;
+    width: 40%;
+    text-align: center;
+}
+
+.font-payment-methods:hover {
+    cursor: pointer;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+#filter-button {
+    color: black;
+}
+
+#shoppingCart {
+    margin: 20px 0;
+}
+
+.lots-total_price {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.lots-item_number_wrapper {
+    margin: 0 20px;
+}
+
