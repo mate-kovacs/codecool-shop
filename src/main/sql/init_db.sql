@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS orders;
 CREATE TABLE orders
 (
   id SERIAL PRIMARY KEY,
+  user_id int references users(id),
   name varchar(36),
   email varchar(36),
   billing_address varchar(150),
@@ -67,10 +68,10 @@ CREATE TABLE user_shopping_cart
   shopping_cart_id int references  shopping_carts(id)
 );
 
-DROP TABLE IF EXISTS user_order;
-CREATE TABLE user_order
+DROP TABLE IF EXISTS shopping_cart_product;
+CREATE TABLE shopping_cart_product
 (
   id SERIAL PRIMARY KEY,
-  user_id int references users(id),
-  order_id int references  orders(id)
+  shopping_cart_id int references shopping_carts(id),
+  product_id int references  products(id)
 );
