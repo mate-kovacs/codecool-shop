@@ -81,9 +81,9 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
         String query = "SELECT * FROM suppliers;";
         List<Supplier> allSupplierList = new ArrayList<>();
         List<Map<String, Object>> result = executeSelectQuery(query);
-        for (Map<String, Object> row: result) {
+        for (Map<String, Object> row : result) {
             Supplier supplier = new Supplier((String) row.get("name"), (String) row.get("description"));
-            supplier.setId((Integer)result.get(0).get("id"));
+            supplier.setId((Integer) result.get(0).get("id"));
             allSupplierList.add(supplier);
         }
         return allSupplierList;
