@@ -4,7 +4,7 @@ DELETE FROM products;
 
 
 INSERT INTO product_categories (name, description, department)
-VALUES ('animal', 'Heterotophe living creature sensable', 'Animal Department');
+VALUES ('animal', 'Heterotrophe living creature sensable', 'Animal Department');
 
 INSERT INTO product_categories (name, description, department)
 VALUES ('plant', 'Autotrophe living creature', 'Plant Department');
