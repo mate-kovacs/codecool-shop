@@ -22,10 +22,6 @@ class QueryhandlerTest {
             public String getConnectionConfigPath() {
                 return "wrongpath/connection.properties";
             }
-
-            @Override
-            public void setConnectionConfigPath() {
-            }
         };
         assertEquals(null, queryHandlerInstance.getConnection());
     }
@@ -38,10 +34,6 @@ class QueryhandlerTest {
             public String getConnectionConfigPath() {
                 return "test_wrong_connection.properties";
             }
-
-            @Override
-            public void setConnectionConfigPath() {
-            }
         };
         assertEquals(null, queryHandlerInstance.getConnection());
     }
@@ -53,10 +45,6 @@ class QueryhandlerTest {
             @Override
             public String getConnectionConfigPath() {
                 return "src/main/resources/connection.properties";
-            }
-
-            @Override
-            public void setConnectionConfigPath() {
             }
         };
         assertTrue(queryHandlerInstance.getConnection() instanceof Connection);
