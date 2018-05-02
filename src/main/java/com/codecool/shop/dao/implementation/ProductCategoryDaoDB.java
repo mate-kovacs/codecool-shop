@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
+
+    private static final String connectionConfigPath = "src/main/resources/connection.properties";
+
     @Override
     public void add(ProductCategory category) {
         String query = "ISNERT INTO product_categories (name, description, department) VALUES" +
@@ -123,7 +126,7 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public String getConnectionConfigPath() {
-        return null;
+        return connectionConfigPath;
     }
 
     @Override
