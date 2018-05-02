@@ -26,7 +26,10 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public void remove(int id) {
-
+        String query = "DELETE FROM product_categories WHERE id=?;";
+        List<Object> parameters = new ArrayList<>();
+        parameters.add(id);
+        executeDMLQuery(query, parameters);
     }
 
     @Override
