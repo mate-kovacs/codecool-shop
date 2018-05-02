@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class SupplierDaoDB implements SupplierDao, Queryhandler{
+public class SupplierDaoDB implements SupplierDao, Queryhandler {
     private final String CONNECTION_CONFIG_PATH = "src/main/resources/connection.properties";
 
     @Override
