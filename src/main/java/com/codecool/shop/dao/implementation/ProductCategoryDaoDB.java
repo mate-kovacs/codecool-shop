@@ -85,7 +85,16 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public List<Product> filterProducts(List<Product> products, ProductCategory category) {
-        return null;
+        if (category.equals(getDefaultCategory())) {
+            return products;
+        }
+        List<Product> temp = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getProductCategory().equals(category)) {
+                temp.add(product);
+            }
+        }
+        return temp;
     }
 
     @Override
