@@ -4,6 +4,8 @@ import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,22 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public ProductCategory find(int id) {
-        return null;
+        String query = "SELECT * FROM product_categories WHERE id=?;";
+        List<Object> parameters = new ArrayList<>();
+        parameters.add(id);
+        ResultSet resultSet = executeSelctQuery(query, parameters);
+
+        ProductCategory result = null;
+        try {
+            resultSet.next();
+            String name = resultSet.getString("name");
+            String description = resultSet.getString("description");
+            String department = resultSet.getString("department");
+            result = new ProductCategory(name, department, description);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
     }
 
     @Override
