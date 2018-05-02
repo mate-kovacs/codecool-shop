@@ -26,7 +26,7 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler{
     public Supplier find(int id) {
         String query = "SELECT * FROM suppliers WHERE id = ?";
         List<Object> parameters = Stream.of(id).collect(Collectors.toList());
-        ResultSet result = executeSelctQuery(query, parameters);
+        ResultSet result = executeSelectQuery(query, parameters);
         Supplier supplier = null;
         try {
             supplier = new Supplier(result.getString("name"), result.getString("description"));
@@ -42,14 +42,14 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler{
     public void remove(int id) {
         String query = "DELETE FROM suppliers WHERE id = ?";
         List<Object> parameters = Stream.of(id).collect(Collectors.toList());
-        executeSelctQuery(query, parameters);
+        executeSelectQuery(query, parameters);
     }
 
     @Override
     public Integer findIdByName(String name) {
         String query = "SELECT * FROM suppliers WHERE name = ?";
         List<Object> parameters = Stream.of(name).collect(Collectors.toList());
-        ResultSet result = executeSelctQuery(query, parameters);
+        ResultSet result = executeSelectQuery(query, parameters);
         Integer id = null;
         try {
             id = result.getInt("id");
