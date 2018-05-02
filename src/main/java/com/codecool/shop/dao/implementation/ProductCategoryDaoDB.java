@@ -52,7 +52,30 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public Integer findIdByName(String name) {
-        return null;
+        String query = "SELECT * FROM product_categories WHERE name=?;";
+        List<Object> parameters = new ArrayList<>();
+        parameters.add(name);
+        ResultSet resultSet = executeSelctQuery(query, parameters);
+
+        List<Integer> results = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                results.add(Integer.parseInt(id));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        Integer result = null;
+        try {
+            result = results.get(0);
+        } catch (ArrayIndexOutOfBoundsException | NullPointerException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     @Override
