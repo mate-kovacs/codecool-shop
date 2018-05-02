@@ -35,6 +35,7 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
             String description = resultSet.getString("description");
             String department = resultSet.getString("department");
             result = new ProductCategory(name, department, description);
+            result.setId(id);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
