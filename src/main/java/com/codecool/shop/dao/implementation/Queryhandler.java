@@ -10,8 +10,6 @@ public interface Queryhandler {
 
     String getConnectionConfigPath();
 
-    void setConnectionConfigPath();
-
     default Connection getConnection() {
         Properties connection_props = new Properties();
         try {
