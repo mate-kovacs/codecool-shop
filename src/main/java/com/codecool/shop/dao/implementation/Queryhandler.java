@@ -10,8 +10,6 @@ public interface Queryhandler {
 
     String getConnectionConfigPath();
 
-    void setConnectionConfigPath();
-
     default Connection getConnection() {
         Properties connection_props = new Properties();
         try {
@@ -88,7 +86,7 @@ public interface Queryhandler {
         return result;
     }
 
-    default ResultSet executeSelctQuery(String query, List<Object> parameters) {
+    default ResultSet executeSelectQuery(String query, List<Object> parameters) {
         ResultSet result = null;
         try (Connection connection = getConnection();
              PreparedStatement statement = createPreparedStatement(connection, query, parameters);
