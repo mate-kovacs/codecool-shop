@@ -9,11 +9,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SupplierDaoDB implements SupplierDao, Queryhandler {
-    private final String CONNECTION_CONFIG_PATH = "src/main/resources/connection.properties";
+    private String connection_config_path = "src/main/resources/connection.properties";
+
+    public SupplierDaoDB(String connection_config_path) {
+        this.connection_config_path = connection_config_path;
+    }
+
+    public SupplierDaoDB() {
+    }
 
     @Override
     public void add(Supplier supplier) {
@@ -26,15 +34,9 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
     public Supplier find(int id) {
         String query = "SELECT * FROM suppliers WHERE id = ?";
         List<Object> parameters = Stream.of(id).collect(Collectors.toList());
-        ResultSet result = executeSelectQuery(query, parameters);
-        Supplier supplier = null;
-        try {
-            supplier = new Supplier(result.getString("name"), result.getString("description"));
-            supplier.setId(result.getInt("id"));
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        List<Map<String, Object>> result = executeSelectQuery(query, parameters);
+        Supplier supplier = new Supplier((String) result.get(0).get("name"), (String) result.get(0).get("description"));
+        supplier.setId((Integer) result.get(0).get("id"));
         return supplier;
     }
 
@@ -49,14 +51,8 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
     public Integer findIdByName(String name) {
         String query = "SELECT * FROM suppliers WHERE name = ?";
         List<Object> parameters = Stream.of(name).collect(Collectors.toList());
-        ResultSet result = executeSelectQuery(query, parameters);
-        Integer id = null;
-        try {
-            id = result.getInt("id");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        List<Map<String, Object>> result = executeSelectQuery(query, parameters);
+        Integer id = (Integer) result.get(0).get("id");
         return id;
     }
 
@@ -84,22 +80,17 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
     public List<Supplier> getAll() {
         String query = "SELECT * FROM suppliers;";
         List<Supplier> allSupplierList = new ArrayList<>();
-        try {
-            ResultSet result = executeSelectQuery(query);
-            while (result.next()) {
-                Supplier supplier = new Supplier(result.getString("name"), result.getString("description"));
-                supplier.setId(result.getInt("id"));
-                allSupplierList.add(supplier);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+        List<Map<String, Object>> result = executeSelectQuery(query);
+        for (Map<String, Object> row: result) {
+            Supplier supplier = new Supplier((String) row.get("name"), (String) row.get("description"));
+            supplier.setId((Integer)result.get(0).get("id"));
+            allSupplierList.add(supplier);
         }
         return allSupplierList;
     }
 
     @Override
     public String getConnectionConfigPath() {
-        return CONNECTION_CONFIG_PATH;
+        return connection_config_path;
     }
 }
