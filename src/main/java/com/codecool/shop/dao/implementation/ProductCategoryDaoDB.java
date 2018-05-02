@@ -99,7 +99,25 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public List<ProductCategory> getAll() {
-        return null;
+        String query = "SELECT * FROM product_categories;";
+        ResultSet resultSet = executeSelectQuery(query);
+
+        List<ProductCategory> results = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                String department = resultSet.getString("department");
+                ProductCategory temp = new ProductCategory(name, department, description);
+                temp.setId(Integer.parseInt(id));
+                results.add(temp);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        return results;
     }
 
     @Override
