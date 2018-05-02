@@ -5,7 +5,6 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
     public void add(Product product) {
 
         String query = "INSERT INTO products (name, description, default_price, default_currency, product_category, supplier)" +
-                        "VALUES (?, ?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?, ?);";
 
         List<Object> parameters = new ArrayList<>();
         parameters.add(product.getName());
@@ -34,15 +33,16 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
     @Override
     public Product find(int id) {
+
         Product product = null;
         String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
-                        "FROM products " +
-                        "WHERE id=?;";
+                "FROM products " +
+                "WHERE id=?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
         ResultSet result = executeSelectQuery(query, parameters);
-        try
-        {
+
+        try {
             String name = result.getString("name");
             String description = result.getString("description");
             int defaultPrice = result.getInt("default_price");
@@ -53,8 +53,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
             Supplier supplier1 = new SupplierDaoDB().find(supplier);
             product = new Product(name, defaultPrice, defaultCurrency, description, productCategory1, supplier1);
             product.setId(id);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("bad thing happened: " + e);
         }
         return product;
@@ -62,6 +61,11 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
     @Override
     public void remove(int id) {
+        String query = "DELETE FROM products\n" +
+                "WHERE id=?;";
+        List<Object> parameters = new ArrayList<>();
+        parameters.add(id);
+        executeDMLQuery(query, parameters);
 
     }
 
