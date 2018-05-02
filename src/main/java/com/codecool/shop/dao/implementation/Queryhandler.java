@@ -23,8 +23,8 @@ public interface Queryhandler {
         String db_name = connection_props.getProperty("db_name");
         String db_url = connection_props.getProperty("db_url");
         String db_user = connection_props.getProperty("db_user");
-        String db_password = connection_props.getProperty("de_password");
-        String db_address = "jdbc:" + db_name + "://" + db_url;
+        String db_password = connection_props.getProperty("db_password");
+        String db_address = "jdbc:postgresql://" + db_url + "/" + db_name;
 
         Connection connection = null;
         try {
