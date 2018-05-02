@@ -37,6 +37,7 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
             result = new ProductCategory(name, department, description);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return result;
     }
@@ -56,7 +57,7 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public ProductCategory getDefaultCategory() {
-        return null;
+        return new ProductCategory("All", "", "");
     }
 
     @Override
