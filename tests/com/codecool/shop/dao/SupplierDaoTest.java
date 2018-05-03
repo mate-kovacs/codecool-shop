@@ -6,8 +6,6 @@ import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +45,11 @@ class SupplierDaoTest {
     }
 
     @Test
+    public void testFind_ReturnNull_When_GiveIntegerMaxValue() {
+        assertNull(supplierDaoDB.find(Integer.MAX_VALUE));
+    }
+
+    @Test
     void testRemove() {
         Supplier testSupplier = new Supplier("TestRemove", "TestDescription");
         supplierDaoDB.add(testSupplier);
@@ -56,7 +59,7 @@ class SupplierDaoTest {
 
     @Test
     void testFindIdByName() {
-        assertEquals(2, (int)supplierDaoDB.findIdByName("Füvészkert"));
+        assertEquals(2, (int) supplierDaoDB.findIdByName("Füvészkert"));
     }
 
     @Test
@@ -81,10 +84,10 @@ class SupplierDaoTest {
         ProductCategory testCategory = new ProductCategory("TestCategory", "test", "test");
         Supplier testDefaultSupplier = new Supplier("All", "");
         Supplier testSupplier = new Supplier("TestName", "TestDescription");
-        productList.add(new Product("TestProduct1", 1,"HUF", "test",testCategory, testDefaultSupplier));
-        productList.add(new Product("TestProduct2", 2,"HUF", "test",testCategory, testSupplier));
-        productList.add(new Product("TestProduct3", 3,"HUF", "test",testCategory, testSupplier));
-        productList.add(new Product("TestProduct4", 4,"HUF", "test",testCategory, testDefaultSupplier));
+        productList.add(new Product("TestProduct1", 1, "HUF", "test", testCategory, testDefaultSupplier));
+        productList.add(new Product("TestProduct2", 2, "HUF", "test", testCategory, testSupplier));
+        productList.add(new Product("TestProduct3", 3, "HUF", "test", testCategory, testSupplier));
+        productList.add(new Product("TestProduct4", 4, "HUF", "test", testCategory, testDefaultSupplier));
         List<Product> filteredProductList = new ArrayList<>();
         filteredProductList.add(productList.get(1));
         filteredProductList.add(productList.get(2));
