@@ -61,9 +61,6 @@ public class ShoppingCartController extends HttpServlet{
 
         response.setContentType("application/json");
         response.getWriter().print(json);
-
-        //response.getWriter().print(shoppingCart.getNumberOfItemById(id));
-
     }
 
 }

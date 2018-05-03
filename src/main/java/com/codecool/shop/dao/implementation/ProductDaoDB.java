@@ -128,8 +128,6 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
             product.setId(id);
             products.add(product);
         }
-//        Field[] fields = Product.class.getDeclaredFields();
-//        fields[0].getName()
         return products;
     }
 
