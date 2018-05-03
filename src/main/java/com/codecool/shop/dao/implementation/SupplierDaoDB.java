@@ -44,7 +44,7 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
     public void remove(int id) {
         String query = "DELETE FROM suppliers WHERE id = ?";
         List<Object> parameters = Stream.of(id).collect(Collectors.toList());
-        executeSelectQuery(query, parameters);
+        executeDMLQuery(query, parameters);
     }
 
     @Override

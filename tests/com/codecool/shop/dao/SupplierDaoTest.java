@@ -18,6 +18,7 @@ class SupplierDaoTest {
         Supplier addedTestSupplier = supplierDaoDB.find(supplierDaoDB.findIdByName("TestName"));
         testSupplier.setId(addedTestSupplier.getId());
         assertEquals(testSupplier.toString(), addedTestSupplier.toString());
+        supplierDaoDB.remove(supplierDaoDB.findIdByName("TestName"));
     }
 
     @Test
@@ -29,8 +30,10 @@ class SupplierDaoTest {
     @Test
     void remove() {
         SupplierDaoDB supplierDaoDB = new SupplierDaoDB("test_resources/connection.properties");
-        supplierDaoDB.remove(supplierDaoDB.findIdByName("TestName"));
-        assertThrows(IndexOutOfBoundsException.class, () -> supplierDaoDB.findIdByName("TestName"));
+        Supplier testSupplier = new Supplier("TestRemove", "TestDescription");
+        supplierDaoDB.add(testSupplier);
+        supplierDaoDB.remove(supplierDaoDB.findIdByName("TestRemove"));
+        assertThrows(IndexOutOfBoundsException.class, () -> supplierDaoDB.findIdByName("TestRemove"));
     }
 
     @Test
@@ -51,6 +54,6 @@ class SupplierDaoTest {
     void getAll() {
         SupplierDaoDB supplierDaoDB = new SupplierDaoDB("test_resources/connection.properties");
         List<Supplier> supplierList = supplierDaoDB.getAll();
-        assertEquals(3, supplierList.size());
+        assertEquals(2, supplierList.size());
     }
 }
