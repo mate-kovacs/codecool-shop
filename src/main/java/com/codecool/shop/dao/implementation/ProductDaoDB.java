@@ -25,14 +25,17 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
         String query = "INSERT INTO products (name, description, default_price, default_currency, product_category, supplier)" +
                 "VALUES (?, ?, ?, ?, ?, ?);";
-
+        ProductCategoryDaoDB productCategoryDaoDB = new ProductCategoryDaoDB();
+        int productId = productCategoryDaoDB.findIdByName(product.getProductCategory().getName());
+        SupplierDaoDB supplierDaoDB = new SupplierDaoDB();
+        int supplierId = supplierDaoDB.findIdByName(product.getSupplier().getName());
         List<Object> parameters = new ArrayList<>();
         parameters.add(product.getName());
         parameters.add(product.getDescription());
         parameters.add(product.getDefaultPrice());
         parameters.add(product.getDefaultCurrency().toString());
-        parameters.add(product.getProductCategory().getId());
-        parameters.add(product.getSupplier().getId());
+        parameters.add(productId);
+        parameters.add(supplierId);
 
         executeDMLQuery(query, parameters);
     }
