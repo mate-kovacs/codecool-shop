@@ -88,6 +88,12 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
     }
 
     @Override
+    public void removeAll() {
+        String query = "DELETE from product_categories;";
+        executeDMLQuery(query);
+    }
+
+    @Override
     public Integer findIdByName(String name) {
         String query = "SELECT * FROM product_categories WHERE name=?;";
         List<Object> parameters = new ArrayList<>();
