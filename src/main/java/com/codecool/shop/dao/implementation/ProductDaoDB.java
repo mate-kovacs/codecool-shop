@@ -88,6 +88,11 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         return (int) results.get(0).get("count");
     }
 
+    public void removeAllProducts() {
+        String query = "DELETE from products WHERE 1=1;";
+        executeSelectQuery(query);
+    }
+
     private List<Product> getProducts(List<Map<String, Object>> results) {
         List<Product> products = new ArrayList<>();
         for (Map<String, Object> result : results) {
