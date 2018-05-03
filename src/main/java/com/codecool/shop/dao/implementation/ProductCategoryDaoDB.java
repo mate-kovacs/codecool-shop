@@ -77,10 +77,6 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
         Integer result = executeDMLQuery(query, parameters);
 
-        if (result == null){
-            throw new IllegalArgumentException("The product category with the given id can not be deleted from database.");
-        }
-
     }
 
     @Override
@@ -90,16 +86,10 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
         parameters.add(name);
         List<Map<String, Object>> resultList = executeSelectQuery(query, parameters);
 
-        List<Integer> results = new ArrayList<>();
-        for (Map<String, Object> resultSet : resultList) {
-            String id = resultSet.get("id").toString();
-            results.add(Integer.parseInt(id));
-        }
-
         Integer result = null;
         try {
-            result = results.get(0);
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException ex) {
+            result = Integer.parseInt(resultList.get(0).get("id").toString());
+        } catch (IndexOutOfBoundsException ex){
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
