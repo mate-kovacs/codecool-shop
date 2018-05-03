@@ -25,6 +25,9 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
 
     @Override
     public void add(Supplier supplier) {
+        if (supplier == null) {
+            throw new IllegalArgumentException();
+        }
         String query = "INSERT INTO suppliers (name, description) VALUES (?, ?)";
         List<Object> parameters = Stream.of(supplier.getName(), supplier.getDescription()).collect(Collectors.toList());
         executeDMLQuery(query, parameters);
@@ -35,6 +38,9 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
         String query = "SELECT * FROM suppliers WHERE id = ?";
         List<Object> parameters = Stream.of(id).collect(Collectors.toList());
         List<Map<String, Object>> result = executeSelectQuery(query, parameters);
+        if(result.size() == 0) {
+            return null;
+        }
         Supplier supplier = new Supplier((String) result.get(0).get("name"), (String) result.get(0).get("description"));
         supplier.setId((Integer) result.get(0).get("id"));
         return supplier;
@@ -52,6 +58,9 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
         String query = "SELECT * FROM suppliers WHERE name = ?";
         List<Object> parameters = Stream.of(name).collect(Collectors.toList());
         List<Map<String, Object>> result = executeSelectQuery(query, parameters);
+        if (result.size() == 0) {
+            return null;
+        }
         Integer id = (Integer) result.get(0).get("id");
         return id;
     }
