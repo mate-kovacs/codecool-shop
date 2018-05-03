@@ -5,6 +5,7 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         parameters.add(product.getName());
         parameters.add(product.getDescription());
         parameters.add(product.getDefaultPrice());
-        parameters.add(product.getDefaultCurrency());
+        parameters.add(product.getDefaultCurrency().toString());
         parameters.add(product.getProductCategory().getId());
         parameters.add(product.getSupplier().getId());
 
@@ -45,7 +46,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
         List<Map<String, Object>> results = executeSelectQuery(query, parameters);
-        return getProducts(results).get(0);
+        return buildProductsList(results).get(0);
 
     }
 
@@ -63,7 +64,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
                 "FROM products;";
         List<Map<String, Object>> results = executeSelectQuery(query);
-        return getProducts(results);
+        return buildProductsList(results);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         int supplierId = supplier.getId();
         parameters.add(supplierId);
         List<Map<String, Object>> results = executeSelectQuery(query, parameters);
-        return getProducts(results);
+        return buildProductsList(results);
     }
 
     @Override
@@ -85,21 +86,21 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         int productCategoryId = productCategory.getId();
         parameters.add(productCategoryId);
         List<Map<String, Object>> results = executeSelectQuery(query, parameters);
-        return getProducts(results);
+        return buildProductsList(results);
     }
 
     public int numberOfProducts() {
         String query = "SELECT COUNT(id) as count FROM products;";
         List<Map<String, Object>> results = executeSelectQuery(query);
-        return (int) results.get(0).get("count");
+        return Integer.parseInt(results.get(0).get("count").toString());
     }
 
     public void removeAllProducts() {
         String query = "DELETE from products WHERE 1=1;";
-        executeSelectQuery(query);
+        executeDMLQuery(query);
     }
 
-    private List<Product> getProducts(List<Map<String, Object>> results) {
+    private List<Product> buildProductsList(List<Map<String, Object>> results) {
         List<Product> products = new ArrayList<>();
         for (Map<String, Object> result : results) {
             int id = (int) result.get("id");
@@ -109,12 +110,14 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
             String defaultCurrency = (String) result.get("default_currency");
             int productCategoryId = (int) result.get("product_category");
             int supplierId = (int) result.get("supplier");
-            ProductCategory productCategory = new ProductCategoryDaoDB().find(productCategoryId);
+            ProductCategory productCategory = new ProductCategoryDaoDB(connection_config_path).find(productCategoryId);
             Supplier supplier = new SupplierDaoDB().find(supplierId);
             Product product = new Product(name, defaultPrice, defaultCurrency, description, productCategory, supplier);
             product.setId(id);
             products.add(product);
         }
+//        Field[] fields = Product.class.getDeclaredFields();
+//        fields[0].getName()
         return products;
     }
 
