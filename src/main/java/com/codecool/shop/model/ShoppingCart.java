@@ -11,8 +11,17 @@ public class ShoppingCart {
 
     public void addItem(int id) {
         Product productToAdd = ProductDaoDB.getInstance().find(id);
-        int quantity = (shoppingCartContent.get(productToAdd) == null)? 1 : shoppingCartContent.get(productToAdd)+1;
-        shoppingCartContent.put(productToAdd, quantity);
+        Boolean isThisItemInTheShoppingCart = false;
+        for (Product product: shoppingCartContent.keySet()) {
+            if (product.getId() == productToAdd.getId()) {
+                shoppingCartContent.put(product, shoppingCartContent.get(product) + 1);
+                isThisItemInTheShoppingCart = true;
+                break;
+            }
+        }
+        if (!isThisItemInTheShoppingCart) {
+            shoppingCartContent.put(productToAdd, 1);
+        }
     }
 
     public void removeItem(int id) {
@@ -41,7 +50,14 @@ public class ShoppingCart {
 
     public int getNumberOfItemById(int id) {
         Product productToCount = ProductDaoDB.getInstance().find(id);
-        return (shoppingCartContent.get(productToCount) == null)? 0 : shoppingCartContent.get(productToCount);
+        Boolean isGivenIdInShoppingCartContent = false;
+        for (Product product : shoppingCartContent.keySet()) {
+            if (product.getId() == productToCount.getId()) {
+                return shoppingCartContent.get(product);
+            }
+        }
+        return 0;
+//        return (shoppingCartContent.get(productToCount) == null)? 0 : shoppingCartContent.get(productToCount);
     }
 
     public int getNumberOfItems() {

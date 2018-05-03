@@ -52,7 +52,7 @@ public class ShoppingCartController extends HttpServlet{
         if (request.getParameter("process").equals("increase")) {
             shoppingCart.addItem(id);
         } else {
-            shoppingCart.removeItem(id);;
+            shoppingCart.removeItem(id);
         }
 
         JSONObject json = new JSONObject();
