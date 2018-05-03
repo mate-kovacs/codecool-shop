@@ -81,12 +81,12 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
 
     @Override
     public List<Product> filterProducts(List<Product> products, Supplier supplier) {
-        if (supplier.equals(getDefaultSupplier())) {
+        if (supplier.toString().equals(getDefaultSupplier().toString())) {
             return products;
         }
         List<Product> temp = new ArrayList<>();
         for (Product product : products) {
-            if (product.getSupplier().equals(supplier)) {
+            if (product.getSupplier().toString().equals(supplier.toString())) {
                 temp.add(product);
             }
         }
