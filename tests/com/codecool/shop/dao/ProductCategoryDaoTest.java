@@ -2,17 +2,11 @@ package com.codecool.shop.dao;
 
 import com.codecool.shop.dao.implementation.ProductCategoryDaoDB;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.Queryhandler;
 import com.codecool.shop.model.ProductCategory;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.management.InvalidAttributeValueException;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -126,10 +120,7 @@ class ProductCategoryDaoTest {
 
     @Test
     void getDefaultCategory() {
-    }
-
-    @Test
-    void filterProducts() {
+        assertEquals("All", testDao.getDefaultCategory().getName());
     }
 
     @Test
