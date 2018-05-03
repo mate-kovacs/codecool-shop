@@ -11,7 +11,13 @@ import java.util.Map;
 
 public class ProductDaoDB implements ProductDao, Queryhandler {
 
-    private final String CONNECTION_CONFIG_PATH = "src/main/resources/connection.properties";
+    private String connection_config_path = "src/main/resources/connection.properties";
+
+    public ProductDaoDB() {}
+    
+    public ProductDaoDB(String configPath) {
+        this.connection_config_path = configPath;
+    }
 
     @Override
     public void add(Product product) {
@@ -114,7 +120,7 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
     @Override
     public String getConnectionConfigPath() {
-        return CONNECTION_CONFIG_PATH;
+        return connection_config_path;
     }
 
 }
