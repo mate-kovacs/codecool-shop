@@ -4,10 +4,9 @@ import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
@@ -29,20 +28,18 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
         String query = "SELECT * FROM product_categories WHERE id=?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
-        ResultSet resultSet = executeSelctQuery(query, parameters);
+        List<Map<String, Object>> resultList = executeSelectQuery(query, parameters);
 
         ProductCategory result = null;
-        try {
-            resultSet.next();
-            String name = resultSet.getString("name");
-            String description = resultSet.getString("description");
-            String department = resultSet.getString("department");
+
+        for (Map<String, Object> resultSet : resultList) {
+            String name = resultSet.get("name").toString();
+            String description = resultSet.get("description").toString();
+            String department = resultSet.get("department").toString();
             result = new ProductCategory(name, department, description);
             result.setId(id);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
         }
+
         return result;
     }
 
@@ -59,17 +56,12 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
         String query = "SELECT * FROM product_categories WHERE name=?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(name);
-        ResultSet resultSet = executeSelctQuery(query, parameters);
+        List<Map<String, Object>> resultList = executeSelectQuery(query, parameters);
 
         List<Integer> results = new ArrayList<>();
-        try {
-            while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                results.add(Integer.parseInt(id));
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
+        for (Map<String, Object> resultSet : resultList) {
+            String id = resultSet.get("id").toString();
+            results.add(Integer.parseInt(id));
         }
 
         Integer result = null;
@@ -104,33 +96,25 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
     @Override
     public List<ProductCategory> getAll() {
         String query = "SELECT * FROM product_categories;";
-        ResultSet resultSet = executeSelectQuery(query);
+        List<Map<String, Object>> resultList = executeSelectQuery(query);
 
         List<ProductCategory> results = new ArrayList<>();
-        try {
-            while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                String department = resultSet.getString("department");
-                ProductCategory temp = new ProductCategory(name, department, description);
-                temp.setId(Integer.parseInt(id));
-                results.add(temp);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
+
+        for (Map<String, Object> resultSet : resultList) {
+            String id = resultSet.get("id").toString();
+            String name = resultSet.get("name").toString();
+            String description = resultSet.get("description").toString();
+            String department = resultSet.get("department").toString();
+            ProductCategory temp = new ProductCategory(name, department, description);
+            temp.setId(Integer.parseInt(id));
+            results.add(temp);
         }
+
         return results;
     }
 
     @Override
     public String getConnectionConfigPath() {
         return connectionConfigPath;
-    }
-
-    @Override
-    public void setConnectionConfigPath() {
-
     }
 }
