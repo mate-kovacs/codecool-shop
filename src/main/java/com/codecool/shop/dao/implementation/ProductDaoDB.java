@@ -5,10 +5,9 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ProductDaoDB implements ProductDao, Queryhandler {
 
@@ -34,28 +33,25 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
     @Override
     public Product find(int id) {
 
-        Product product = null;
         String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
                 "FROM products " +
                 "WHERE id=?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
-        ResultSet result = executeSelectQuery(query, parameters);
+        List<Map<String, Object>> result = executeSelectQuery(query, parameters);
+        Map<String, Object> resultObject = result.get(0);
 
-        try {
-            String name = result.getString("name");
-            String description = result.getString("description");
-            int defaultPrice = result.getInt("default_price");
-            String defaultCurrency = result.getString("default_currency");
-            int productCategory = result.getInt("product_category");
-            int supplier = result.getInt("supplier");
-            ProductCategory productCategory1 = new ProductCategoryDaoDB().find(productCategory);
-            Supplier supplier1 = new SupplierDaoDB().find(supplier);
-            product = new Product(name, defaultPrice, defaultCurrency, description, productCategory1, supplier1);
-            product.setId(id);
-        } catch (SQLException e) {
-            System.out.println("bad thing happened: " + e);
-        }
+        String name = (String) resultObject.get("name");
+        String description = (String) resultObject.get("description");
+        int defaultPrice = (int) resultObject.get("default_price");
+        String defaultCurrency = (String) resultObject.get("default_currency");
+        int productCategoryId = (int) resultObject.get("product_category");
+        int supplierId = (int) resultObject.get("supplier");
+        ProductCategory productCategory = new ProductCategoryDaoDB().find(productCategoryId);
+        Supplier supplier = new SupplierDaoDB().find(supplierId);
+        Product product = new Product(name, defaultPrice, defaultCurrency, description, productCategory, supplier);
+        product.setId(id);
+
         return product;
     }
 
@@ -71,7 +67,26 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
+                "FROM products;";
+        List<Object> parameters = new ArrayList<>();
+        List<Map<String, Object>> results = executeSelectQuery(query, parameters);
+        List<Product> products = new ArrayList<>();
+        for (Map<String, Object> result : results) {
+            int id = (int) result.get("id");
+            String name = (String) result.get("name");
+            String description = (String) result.get("description");
+            int defaultPrice = (int) result.get("default_price");
+            String defaultCurrency = (String) result.get("default_currency");
+            int productCategoryId = (int) result.get("product_category");
+            int supplierId = (int) result.get("supplier");
+            ProductCategory productCategory = new ProductCategoryDaoDB().find(productCategoryId);
+            Supplier supplier = new SupplierDaoDB().find(supplierId);
+            Product product = new Product(name, defaultPrice, defaultCurrency, description, productCategory, supplier);
+            product.setId(id);
+            products.add(product);
+        }
+        return products;
     }
 
     @Override
@@ -89,8 +104,4 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         return CONNECTION_CONFIG_PATH;
     }
 
-    @Override
-    public void setConnectionConfigPath() {
-
-    }
 }
