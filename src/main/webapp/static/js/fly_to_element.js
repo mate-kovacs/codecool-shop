@@ -4,7 +4,7 @@ function flyToElement(flyer, flyingTo) {
     let divider = 3;
     let flyerClone = $(flyer).clone();
     $(flyerClone).css({position: 'absolute', top: $(flyer).offset().top + "px",
-        left: $(flyer).offset().left + "px", opacity: 1, 'z-index': 1000});
+        left: $(flyer).offset().left + "px", opacity: 1, 'z-index': 1000, transform: "scale(0.5,0.5)"});
     $('body').append($(flyerClone));
     let gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width()/divider)/2;
     let gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
