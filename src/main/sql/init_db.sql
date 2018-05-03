@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS suppliers CASCADE;
+﻿DROP TABLE IF EXISTS suppliers CASCADE;
 CREATE TABLE suppliers
 (
   id SERIAL PRIMARY KEY,
@@ -24,8 +24,8 @@ CREATE TABLE products
   description TEXT,
   default_price INT,
   default_currency VARCHAR(3),
-  product_category INT REFERENCES product_categories(id),
-  supplier INT REFERENCES suppliers(id)
+  product_category INT REFERENCES product_categories(id) ON DELETE CASCADE,
+  supplier INT REFERENCES suppliers(id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS users CASCADE;
@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS orders CASCADE;
 CREATE TABLE orders
 (
   id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES users(id),
+  user_id INT REFERENCES users(id) ,
   name VARCHAR(36),
   email VARCHAR(36),
   billing_address VARCHAR(150),
@@ -65,7 +65,7 @@ CREATE TABLE user_shopping_cart
 (
   id SERIAL PRIMARY KEY,
   user_id INT references users(id),
-  shopping_cart_id INT REFERENCES shopping_carts(id)
+  shopping_cart_id INT REFERENCES shopping_carts(id) 
 );
 
 DROP TABLE IF EXISTS shopping_cart_product CASCADE;
@@ -73,5 +73,5 @@ CREATE TABLE shopping_cart_product
 (
   id SERIAL PRIMARY KEY,
   shopping_cart_id INT REFERENCES shopping_carts(id),
-  product_id INT REFERENCES  products(id)
+  product_id INT REFERENCES  products(id) 
 );

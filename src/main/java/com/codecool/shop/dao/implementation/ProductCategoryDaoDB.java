@@ -3,6 +3,7 @@ package com.codecool.shop.dao.implementation;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,17 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     @Override
     public void add(ProductCategory category) {
-        String query = "ISNERT INTO product_categories (name, description, department) VALUES" +
+        if (category == null) {
+            throw new IllegalArgumentException("Null category can not be added.");
+        } else if ("".equals(category.getName())){
+            throw new ValueException("Category must have a name.");
+        } else if ("".equals(category.getDepartment())){
+            throw new ValueException("Category must have a department.");
+        } else if ("".equals(category.getDescription())){
+            throw new ValueException("Category must have a description.");
+        }
+
+        String query = "INSERT INTO product_categories (name, description, department) VALUES" +
                 " (?, ?, ?);";
         List<Object> parameters = new ArrayList<>();
         parameters.add(category.getName());
@@ -39,12 +50,14 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
         ProductCategory result = null;
 
-        for (Map<String, Object> resultSet : resultList) {
-            String name = resultSet.get("name").toString();
-            String description = resultSet.get("description").toString();
-            String department = resultSet.get("department").toString();
-            result = new ProductCategory(name, department, description);
-            result.setId(id);
+        if (resultList.size() == 1) {
+            for (Map<String, Object> resultSet : resultList) {
+                String name = resultSet.get("name").toString();
+                String description = resultSet.get("description").toString();
+                String department = resultSet.get("department").toString();
+                result = new ProductCategory(name, department, description);
+                result.setId(id);
+            }
         }
 
         return result;
@@ -55,7 +68,15 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
         String query = "DELETE FROM product_categories WHERE id=?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
-        executeDMLQuery(query, parameters);
+
+        String tempQuery = "SELECT * FROM product_categories WHERE id=?;";
+        List<Map<String, Object>> resultList = executeSelectQuery(tempQuery, parameters);
+        if (resultList.size() == 0){
+            throw new IllegalArgumentException("There is no product category with such id in the database.");
+        }
+
+        Integer result = executeDMLQuery(query, parameters);
+
     }
 
     @Override
@@ -65,16 +86,10 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
         parameters.add(name);
         List<Map<String, Object>> resultList = executeSelectQuery(query, parameters);
 
-        List<Integer> results = new ArrayList<>();
-        for (Map<String, Object> resultSet : resultList) {
-            String id = resultSet.get("id").toString();
-            results.add(Integer.parseInt(id));
-        }
-
         Integer result = null;
         try {
-            result = results.get(0);
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException ex) {
+            result = Integer.parseInt(resultList.get(0).get("id").toString());
+        } catch (IndexOutOfBoundsException ex){
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
