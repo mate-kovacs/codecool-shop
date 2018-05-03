@@ -13,9 +13,17 @@ import java.util.Map;
 public class ProductDaoDB implements ProductDao, Queryhandler {
 
     private String connection_config_path = "src/main/resources/connection.properties";
+    private static ProductDaoDB instance = null;
 
     public ProductDaoDB() {}
-    
+
+    public static ProductDaoDB getInstance() {
+        if (instance == null) {
+            instance = new ProductDaoDB();
+        }
+        return instance;
+    }
+
     public ProductDaoDB(String configPath) {
         this.connection_config_path = configPath;
     }

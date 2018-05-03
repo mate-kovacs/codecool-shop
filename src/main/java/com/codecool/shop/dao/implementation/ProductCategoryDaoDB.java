@@ -12,6 +12,14 @@ import java.util.Map;
 public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
 
     private String connectionConfigPath = "src/main/resources/connection.properties";
+    private static ProductCategoryDaoDB instance = null;
+
+    public static ProductCategoryDaoDB getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoDB();
+        }
+        return instance;
+    }
 
     public ProductCategoryDaoDB(String connectionConfigPath) {
         this.connectionConfigPath = connectionConfigPath;

@@ -15,12 +15,20 @@ import java.util.stream.Stream;
 
 public class SupplierDaoDB implements SupplierDao, Queryhandler {
     private String connection_config_path = "src/main/resources/connection.properties";
+    private static SupplierDaoDB instance = null;
 
     public SupplierDaoDB(String connection_config_path) {
         this.connection_config_path = connection_config_path;
     }
 
     public SupplierDaoDB() {
+    }
+
+    public static SupplierDaoDB getInstance() {
+        if (instance == null) {
+            instance = new SupplierDaoDB();
+        }
+        return instance;
     }
 
     @Override
