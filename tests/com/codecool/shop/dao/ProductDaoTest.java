@@ -35,8 +35,8 @@ class ProductDaoTest {
     }
 
     @BeforeEach
-    private void setup() {
-        productDaoDB = new ProductDaoDB();
+    void setup() {
+        productDaoDB = new ProductDaoDB("src/main/test_resources/connection_properties");
 
         ProductCategory material = new ProductCategory("Material", "-", "Written materials in different topics");
         this.material = material;
@@ -75,6 +75,7 @@ class ProductDaoTest {
 
         productsBySupplierDani.add(product3);
         productsBySupplierDani.add(product4);
+
         productsByCategoryMaterial.add(product2);
         productsByCategoryMaterial.add(product4);
 
@@ -82,8 +83,12 @@ class ProductDaoTest {
     }
 
     @AfterEach
+    @Test
     void removeAllProducts() {
         productDaoDB.removeAllProducts();
+        numberOfProducts = productDaoDB.numberOfProducts();
+
+        assertTrue(numberOfProducts == 0);
     }
 
     @Test
