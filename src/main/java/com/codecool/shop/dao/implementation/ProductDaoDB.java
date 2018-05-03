@@ -13,9 +13,17 @@ import java.util.Map;
 public class ProductDaoDB implements ProductDao, Queryhandler {
 
     private String connection_config_path = "src/main/resources/connection.properties";
+    private static ProductDaoDB instance = null;
 
     public ProductDaoDB() {}
-    
+
+    public static ProductDaoDB getInstance() {
+        if (instance == null) {
+            instance = new ProductDaoDB();
+        }
+        return instance;
+    }
+
     public ProductDaoDB(String configPath) {
         this.connection_config_path = configPath;
     }
@@ -25,14 +33,17 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
         String query = "INSERT INTO products (name, description, default_price, default_currency, product_category, supplier)" +
                 "VALUES (?, ?, ?, ?, ?, ?);";
-
+        ProductCategoryDaoDB productCategoryDaoDB = new ProductCategoryDaoDB();
+        int productId = productCategoryDaoDB.findIdByName(product.getProductCategory().getName());
+        SupplierDaoDB supplierDaoDB = new SupplierDaoDB();
+        int supplierId = supplierDaoDB.findIdByName(product.getSupplier().getName());
         List<Object> parameters = new ArrayList<>();
         parameters.add(product.getName());
         parameters.add(product.getDescription());
         parameters.add(product.getDefaultPrice());
         parameters.add(product.getDefaultCurrency().toString());
-        parameters.add(product.getProductCategory().getId());
-        parameters.add(product.getSupplier().getId());
+        parameters.add(productId);
+        parameters.add(supplierId);
 
         executeDMLQuery(query, parameters);
     }
