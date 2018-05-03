@@ -3,14 +3,11 @@ package com.codecool.shop.dao.implementation;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public interface Queryhandler {
 
     String getConnectionConfigPath();
-
-    void setConnectionConfigPath();
 
     default Connection getConnection() {
         Properties connection_props = new Properties();
@@ -76,27 +73,45 @@ public interface Queryhandler {
         return result;
     }
 
-    default ResultSet executeSelectQuery(String query) {
-        ResultSet result = null;
+    default List<Map<String, Object>> executeSelectQuery(String query) {
+        List<Map<String, Object>> resultListOfMaps = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(query);
+             PreparedStatement statement = connection.prepareStatement(query)
         ){
-            result = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
+            ResultSetMetaData metadata = resultSet.getMetaData();
+            int numberOfColumns = metadata.getColumnCount();
+            while (resultSet.next()) {
+                Map<String, Object> tempMap = new HashMap<>();
+                for(int i=1; i<=numberOfColumns; i++){
+                    tempMap.put(metadata.getColumnName(i),resultSet.getObject(i));
+                }
+                resultListOfMaps.add(tempMap);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return result;
+        return resultListOfMaps;
     }
 
-    default ResultSet executeSelctQuery(String query, List<Object> parameters) {
-        ResultSet result = null;
+    default List<Map<String, Object>> executeSelectQuery(String query, List<Object> parameters) {
+        List<Map<String, Object>> resultListOfMaps = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement statement = createPreparedStatement(connection, query, parameters);
+             PreparedStatement statement = createPreparedStatement(connection, query, parameters)
         ){
-            result = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
+            ResultSetMetaData metadata = resultSet.getMetaData();
+            int numberOfColumns = metadata.getColumnCount();
+            while (resultSet.next()) {
+                Map<String, Object> tempMap = new HashMap<>();
+                for(int i=1; i<=numberOfColumns; i++){
+                    tempMap.put(metadata.getColumnName(i),resultSet.getObject(i));
+                }
+                resultListOfMaps.add(tempMap);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return result;
+        return resultListOfMaps;
     }
 }
