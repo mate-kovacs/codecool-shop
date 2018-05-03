@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import javax.management.InvalidAttributeValueException;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,8 +48,7 @@ class ProductCategoryDaoTest {
 
     @Test
     void test_add_null() {
-        ProductCategory category = null;
-        assertThrows(IllegalArgumentException.class, () -> testDao.add(category));
+        assertThrows(IllegalArgumentException.class, () -> testDao.add(null));
     }
 
     @Test
@@ -75,15 +75,53 @@ class ProductCategoryDaoTest {
                 "shroom depatrment",
                 "Not an animal, but not a palnt either. Something in between.");
         testDao.add(category);
-        assertEquals("mushroom", testDao.find(15).getName());
+        assertEquals("mushroom", testDao.find(testDao.findIdByName("mushroom")).getName());
     }
 
     @Test
-    void remove() {
+    void test_remove_id_0() {
+        assertThrows(IllegalArgumentException.class, () -> testDao.remove(0));
     }
 
     @Test
-    void findIdByName() {
+    void test_remove_id_negative() {
+        assertThrows(IllegalArgumentException.class, () -> testDao.remove(-7));
+    }
+
+    @Test
+    void test_remove_id_too_big() {
+        assertThrows(IllegalArgumentException.class, () -> testDao.remove(Integer.MAX_VALUE));
+    }
+
+    @Test
+    void test_remove_with_foreign_key() {
+        testDao.remove(2);
+        assertEquals(null, testDao.find(2));
+    }
+
+    @Test
+    void test_remove_no_foreign_key() {
+        ProductCategory category = new ProductCategory("bacteria",
+                "bacta tank",
+                "One cell organizm,");
+        testDao.add(category);
+        testDao.remove(testDao.findIdByName("bacteria"));
+        assertEquals(null, testDao.findIdByName("bacteria"));
+    }
+
+    @Test
+    void test_findIdByName_null() {
+        assertEquals(null, testDao.findIdByName(null));
+    }
+
+    @Test
+    void test_findIdByName_no_name() {
+        assertEquals(null, testDao.findIdByName(""));
+    }
+
+    @Test
+    void test_findIdByName_valid() {
+        assertEquals(1, Integer.parseInt(testDao.findIdByName("animal").toString()));
     }
 
     @Test
