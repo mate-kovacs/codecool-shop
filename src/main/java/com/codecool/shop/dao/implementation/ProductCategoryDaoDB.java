@@ -68,7 +68,19 @@ public class ProductCategoryDaoDB implements ProductCategoryDao, Queryhandler {
         String query = "DELETE FROM product_categories WHERE id=?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
-        executeDMLQuery(query, parameters);
+
+        String tempQuery = "SELECT * FROM product_categories WHERE id=?;";
+        List<Map<String, Object>> resultList = executeSelectQuery(tempQuery, parameters);
+        if (resultList.size() == 0){
+            throw new IllegalArgumentException("There is no product category with such id in the database.");
+        }
+
+        Integer result = executeDMLQuery(query, parameters);
+
+        if (result == null){
+            throw new IllegalArgumentException("The product category with the given id can not be deleted from database.");
+        }
+
     }
 
     @Override
