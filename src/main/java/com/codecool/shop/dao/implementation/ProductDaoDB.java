@@ -82,6 +82,12 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         return getProducts(results);
     }
 
+    public int numberOfProducts() {
+        String query = "SELECT COUNT(id) as count FROM products;";
+        List<Map<String, Object>> results = executeSelectQuery(query);
+        return (int) results.get(0).get("count");
+    }
+
     private List<Product> getProducts(List<Map<String, Object>> results) {
         List<Product> products = new ArrayList<>();
         for (Map<String, Object> result : results) {
