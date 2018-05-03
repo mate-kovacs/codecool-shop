@@ -35,42 +35,54 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
 
         String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
                 "FROM products " +
-                "WHERE id=?;";
+                "WHERE id= ?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
-        List<Map<String, Object>> result = executeSelectQuery(query, parameters);
-        Map<String, Object> resultObject = result.get(0);
+        List<Map<String, Object>> results = executeSelectQuery(query, parameters);
+        return getProducts(results).get(0);
 
-        String name = (String) resultObject.get("name");
-        String description = (String) resultObject.get("description");
-        int defaultPrice = (int) resultObject.get("default_price");
-        String defaultCurrency = (String) resultObject.get("default_currency");
-        int productCategoryId = (int) resultObject.get("product_category");
-        int supplierId = (int) resultObject.get("supplier");
-        ProductCategory productCategory = new ProductCategoryDaoDB().find(productCategoryId);
-        Supplier supplier = new SupplierDaoDB().find(supplierId);
-        Product product = new Product(name, defaultPrice, defaultCurrency, description, productCategory, supplier);
-        product.setId(id);
-
-        return product;
     }
 
     @Override
     public void remove(int id) {
         String query = "DELETE FROM products\n" +
-                "WHERE id=?;";
+                "WHERE id= ?;";
         List<Object> parameters = new ArrayList<>();
         parameters.add(id);
         executeDMLQuery(query, parameters);
-
     }
 
     @Override
     public List<Product> getAll() {
         String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
                 "FROM products;";
+        List<Map<String, Object>> results = executeSelectQuery(query);
+        return getProducts(results);
+    }
+
+    @Override
+    public List<Product> getBy(Supplier supplier) {
+        String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
+                "FROM products WHERE supplier = ?;";
         List<Object> parameters = new ArrayList<>();
+        int supplierId = supplier.getId();
+        parameters.add(supplierId);
         List<Map<String, Object>> results = executeSelectQuery(query, parameters);
+        return getProducts(results);
+    }
+
+    @Override
+    public List<Product> getBy(ProductCategory productCategory) {
+        String query = "SELECT id, name, description, default_price, default_currency, product_category, supplier " +
+                "FROM products WHERE product_category = ?;";
+        List<Object> parameters = new ArrayList<>();
+        int productCategoryId = productCategory.getId();
+        parameters.add(productCategoryId);
+        List<Map<String, Object>> results = executeSelectQuery(query, parameters);
+        return getProducts(results);
+    }
+
+    private List<Product> getProducts(List<Map<String, Object>> results) {
         List<Product> products = new ArrayList<>();
         for (Map<String, Object> result : results) {
             int id = (int) result.get("id");
@@ -87,16 +99,6 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
             products.add(product);
         }
         return products;
-    }
-
-    @Override
-    public List<Product> getBy(Supplier supplier) {
-        return null;
-    }
-
-    @Override
-    public List<Product> getBy(ProductCategory productCategory) {
-        return null;
     }
 
     @Override
