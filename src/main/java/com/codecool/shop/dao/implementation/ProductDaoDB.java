@@ -106,8 +106,9 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
         return Integer.parseInt(results.get(0).get("count").toString());
     }
 
+    @Override
     public void removeAllProducts() {
-        String query = "DELETE from products WHERE 1=1;";
+        String query = "DELETE from products;";
         executeDMLQuery(query);
     }
 
@@ -127,8 +128,6 @@ public class ProductDaoDB implements ProductDao, Queryhandler {
             product.setId(id);
             products.add(product);
         }
-//        Field[] fields = Product.class.getDeclaredFields();
-//        fields[0].getName()
         return products;
     }
 

@@ -11,25 +11,25 @@ public class ShoppingCart {
 
     public void addItem(int id) {
         Product productToAdd = ProductDaoDB.getInstance().find(id);
-        int quantity = (shoppingCartContent.get(productToAdd) == null)? 1 : shoppingCartContent.get(productToAdd)+1;
-        shoppingCartContent.put(productToAdd, quantity);
+        Product sameProduct = getSameProductFromShoppingCartContent(productToAdd);
+        if (sameProduct == null) shoppingCartContent.put(productToAdd, 1);
+        else shoppingCartContent.put(sameProduct, shoppingCartContent.get(sameProduct) + 1);
+
     }
 
     public void removeItem(int id) {
         Product productToRemove = ProductDaoDB.getInstance().find(id);
-        Integer currentQuantity = shoppingCartContent.get(productToRemove);
-        if (currentQuantity > 1) {
-            shoppingCartContent.put(productToRemove, --currentQuantity);
-        } else if (currentQuantity == 1) {
-            shoppingCartContent.remove(productToRemove);
-        }
+        Product sameProduct = getSameProductFromShoppingCartContent(productToRemove);
+        Integer currentQuantity = shoppingCartContent.get(sameProduct);
+        if (currentQuantity > 1) shoppingCartContent.put(sameProduct, --currentQuantity);
+        else if (currentQuantity == 1) shoppingCartContent.remove(sameProduct);
     }
 
     public HashMap getContent() {
         return shoppingCartContent;
     }
 
-    public int sumCart(){
+    public int sumCart() {
         int sum = 0;
         for (Map.Entry<Product, Integer> entry : shoppingCartContent.entrySet()) {
             Product product = entry.getKey();
@@ -41,7 +41,16 @@ public class ShoppingCart {
 
     public int getNumberOfItemById(int id) {
         Product productToCount = ProductDaoDB.getInstance().find(id);
-        return (shoppingCartContent.get(productToCount) == null)? 0 : shoppingCartContent.get(productToCount);
+        Product sameProduct = getSameProductFromShoppingCartContent(productToCount);
+        if (sameProduct == null) return 0;
+        return shoppingCartContent.get(sameProduct);
+    }
+
+    private Product getSameProductFromShoppingCartContent(Product searchedProduct) {
+        for (Product product : shoppingCartContent.keySet()) {
+            if (product.getId() == searchedProduct.getId()) return product;
+        }
+        return null;
     }
 
     public int getNumberOfItems() {
@@ -52,5 +61,3 @@ public class ShoppingCart {
         shoppingCartContent.clear();
     }
 }
-
-

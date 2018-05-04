@@ -107,6 +107,12 @@ public class SupplierDaoDB implements SupplierDao, Queryhandler {
     }
 
     @Override
+    public void removeAll() {
+        String query = "DELETE FROM suppliers;";
+        executeDMLQuery(query);
+    }
+
+    @Override
     public String getConnectionConfigPath() {
         return connection_config_path;
     }
