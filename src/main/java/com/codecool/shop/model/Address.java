@@ -28,7 +28,7 @@ public class Address {
     /**
      * Returns the street address of the Address type data as a String.
      *
-     * @return: street address as String.
+     * @return street address as String.
      */
     public String getAddress() {
         return address;
@@ -37,7 +37,7 @@ public class Address {
     /**
      * Returns the city of the Address type data as a String.
      *
-     * @return: city as String.
+     * @return city as String.
      */
     public String getCity() {
         return city;
@@ -46,7 +46,7 @@ public class Address {
     /**
      * Returns the country of the Address type data as a String.
      *
-     * @return: country as String.
+     * @return country as String.
      */
     public String getCountry() {
         return country;
@@ -55,7 +55,7 @@ public class Address {
     /**
      * Returns the zip code of the Address type data as an integer.
      *
-     * @return: zip code as integer.
+     * @return zip code as integer.
      */
     public int getZip() {
         return zip;
